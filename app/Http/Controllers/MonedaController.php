@@ -14,7 +14,7 @@ class MonedaController extends Controller
      */
     public function index()
     {
-        $monedas = Moneda::paginate();
+        $monedas = Moneda::all();
         return view('monedas.index',['monedas'=>$monedas]);
     }
 

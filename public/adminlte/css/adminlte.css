@@ -10916,7 +10916,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .card-primary:not(.card-outline) .card-header {
-  background-color: #007bff;
+  background-color: #3C4296;
   border-bottom: 0;
 }
 
@@ -10926,7 +10926,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .card-primary.card-outline {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #3C4296;
 }
 
 .bg-primary .btn-tool, .label-primary .btn-tool,

@@ -13,10 +13,37 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate();
-        return view('users.index',['users'=>$users]);
+        $estados = User::getArrayStatus();
+        $filtro = count($request->toArray())?true:false;
+        $users = User::name($request->get('nameF'))
+            ->lastname($request->get('lastnameF'))
+            ->email($request->get('emailF'))
+            ->status($request->get('estadoF'))
+            ->get();
+        return view('users.index',['users'=>$users,'filtro'=>$filtro,'estados'=>$estados]);
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('empresas.create');
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(UserRequest $request)
+    {
+        $empresa = User::create($request->all());
+        return redirect()->route('config.users.create',$empresa)
+            ->with('info','Empresa guardado con exito');
     }
     /**
      * Display the specified resource.
@@ -62,12 +89,15 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
+        $user=User::find($id);
         $user->delete();
-        return back()->with('info','Eliminado correctamente');
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 }

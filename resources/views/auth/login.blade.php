@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="login-logo">
-        <a href="{{url('/')}}"><b>MATISA</b> AUTOS S.R.L.</a>
+        <a href="{{url('/')}}"><img class="logo-inicio" src="{{asset("img/logo.png")}}"></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -45,7 +45,7 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                        <button type="submit" class="btn btn-primary btn-block">Entrar</button>
                     </div>
                     <!-- /.col -->
                 </div>

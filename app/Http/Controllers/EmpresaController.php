@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
+use App\Http\Requests\EmpresaRequest;
 use Illuminate\Http\Request;
 
 class EmpresaController extends Controller
@@ -11,9 +13,18 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $estados = Company::getArrayStatus();
+
+       // dd($request);
+        $filtro = count($request->toArray())?true:false;
+        $empresas = Company::nombre($request->get('nombreF'))
+                    ->direccion($request->get('direccionF'))
+                    ->telefono($request->get('telefonoF'))
+                    ->status($request->get('estadoF'))
+                    ->get();
+        return view('empresas.index',['empresas'=>$empresas,'filtro'=>$filtro,'estados'=>$estados]);
     }
 
     /**
@@ -23,7 +34,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        //
+        return view('empresas.create');
     }
 
     /**
@@ -32,9 +43,11 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
-        //
+        $empresa = Company::create($request->all());
+        return redirect()->route('config.empresas.create',$empresa)
+            ->with('info','Empresa guardado con exito');
     }
 
     /**
@@ -43,9 +56,9 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $empresa)
     {
-        //
+        return view('empresas.show',compact('empresa'));
     }
 
     /**
@@ -54,9 +67,9 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $empresa)
     {
-        //
+        return view('empresas.edit',compact('empresa'));
     }
 
     /**
@@ -66,9 +79,11 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmpresaRequest $request, Company $empresa)
     {
-        //
+        $empresa->update($request->all());
+        return redirect()->route('config.empresas.edit',$empresa->id)
+            ->with('info','Empresa actualizado con exito');
     }
 
     /**
@@ -79,6 +94,11 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $empresa = Company::find($id);
+        $empresa->delete();
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
+       // return back();//->with('info','Eliminado correctamente');
     }
 }

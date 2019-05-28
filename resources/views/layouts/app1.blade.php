@@ -10,13 +10,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>MATISA AUTOS | SISTEMA</title>
+    <link rel="shortcut icon" href="{{ asset('img/logohostingbol.png') }}">
+    @include('layouts.partials.css')
 
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -161,142 +157,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </nav>
     <!-- /.navbar -->
 
-    <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
-        <a href="{{route('escritorio')}}" class="brand-link">
-            <img src="/adminlte/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light">Matisa Autos S.R.L.</span>
-        </a>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
-            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image">
-                    <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                </div>
-                <div class="info">
-                    <a href="#" class="d-block"> {{Auth::user()->name}}</a>
-                </div>
-            </div>
-
-            <!-- Sidebar Menu -->
-            <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    <!-- Add icons to the links using the .nav-icon class
-                         with font-awesome or any other icon font library -->
-                    {{--BOTONES EXAMPLE--}}
-                    {{--<li class="nav-item has-treeview menu-open">
-                        <a href="#" class="nav-link active">
-                            <i class="nav-icon fa fa-dashboard"></i>
-                            <p>
-                                Starter Pages
-                                <i class="right fa fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link active">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Active Page</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Inactive Page</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-th"></i>
-                            <p>
-                                Simple Link
-                                <span class="right badge badge-danger">New</span>
-                            </p>
-                        </a>
-                    </li>--}}
-                    {{--Dashboard--}}
-                    <li class="nav-item">
-                        <a href="{{route('escritorio')}}" class="nav-link {{active('escritorio')}}">
-                            <i class="nav-icon fa fa-dashboard"></i>
-                            <p>
-                                Escritorio
-                            </p>
-                        </a>
-                    </li>
-                    {{--configuracion del sistema--}}
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-cogs"></i>
-                            <p>
-                                Configuración
-                                <i class="right fa fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Empresa</p>
-                                </a>
-                            </li>
-                            @can('users.index')
-                            <li class="nav-item">
-                                <a href="{{route('config.users.index')}}" class="nav-link {{active('config.users.index')}}">
-                                    <i class="fa fa-user nav-icon"></i>
-                                    <p>Usuarios</p>
-                                </a>
-                            </li>
-                            @endcan
-                            @can('roles.index')
-                            <li class="nav-item">
-                                <a href="{{route('config.roles.index')}}" class="nav-link {{active('config.roles.index')}}">
-                                    <i class="fa fa-rupee nav-icon"></i>
-                                    <p>Roles</p>
-                                </a>
-                            </li>
-                            @endcan
-                        </ul>
-                    </li>
-                    {{--parametros del sistema--}}
-                    <li class="nav-item has-treeview {{active('config/monedas/')}}">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-dashboard"></i>
-
-                            <p>
-                                Parámetros
-                                <i class="right fa fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            @can('monedas.index')
-                            <li class="nav-item {{active('config/monedas/')}}">
-                                <a href="{{route('parametros.monedas.index')}}" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>Monedas</p>
-                                </a>
-                            </li>
-                            @endcan
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>otro</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                </ul>
-            </nav>
-            <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-    </aside>
+    {{--sidebar del sistema--}}
+    @include('layouts.partials.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -305,13 +167,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Starter Page</h1>
+                        <h1 class="m-0 text-dark">@yield('title')</h1>
                     </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Starter Page</li>
-                        </ol>
+                    <div class="col-12 migasdepan">
+                        @yield('breadcrumbs')
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -321,17 +180,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
-                @if(session('info'))
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="alert alert-success">
-                                    {{session('info')}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
+               @include('layouts.partials.alertContent')
                @yield('content')
             </div><!-- /.container-fluid -->
         </div>
@@ -353,21 +202,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <footer class="main-footer">
         <!-- To the right -->
         <div class="float-right d-none d-sm-inline">
-            Anything you want
+            Si lo puedes imaginar se puede programar
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2018 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2019 <a href="https://www.hostingbol.com">HOSTINGBOL</a></strong> All rights reserved.
     </footer>
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 
-<!-- jQuery -->
-<script src="/adminlte/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/adminlte/js/adminlte.min.js"></script>
+@include('layouts.partials.scripts')
 </body>
 </html>

@@ -1,0 +1,25 @@
+.sidebar-dark-primary{
+    background-color: #3c4296 !important;
+}
+.logo-inicio {
+    max-height: 300px;
+    max-width: 300px;
+}
+
+.logo-sidebar {
+    width: 200px;
+}
+.btn-filtro{
+    margin-left: 8px;
+}
+
+.migasdepan{
+ margin: 10px 5pc 0px 10px;
+}
+.btn-accion{
+   padding: 0;
+    margin: 0 4px 0 4px;
+}
+.text-center {
+    text-align: center !important;
+}

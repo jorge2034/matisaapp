@@ -11,7 +11,7 @@ class MonedasTableSeeder extends Seeder
      */
     public function run()
     {
-       factory(App\Moneda::class,40)->create();
+       factory(App\Moneda::class,20)->create();
 
     }
 }

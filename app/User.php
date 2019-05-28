@@ -28,6 +28,8 @@ class User extends Authenticatable
 {
     use Notifiable,ShinobiTrait,SoftDeletes;
 
+    const ENABLED = 'ENABLED', ENABLED_TXT = 'Activo';
+    const DISABLED = 'DISABLED', DISABLED_TXT = 'Inactivo';
     protected $dates = ['deleted_at'];
 
     /**
@@ -36,7 +38,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','company_id',
+        'name', 'lastname', 'email', 'password','company_id','status'
     ];
 
     /**
@@ -56,4 +58,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getArrayStatus()
+    {
+        $estado = array(
+            self::ENABLED => self::ENABLED_TXT,
+            self::DISABLED => self::DISABLED_TXT,
+        );
+        return $estado;
+    }
+
+    public function scopeName($query,$name){
+        if(trim($name)!=""){
+            $query->where('name','LIKE',"%$name%");
+        }
+    }
+    public function scopeLastname($query,$apellido){
+        if(trim($apellido)!=""){
+            $query->where('lastname','LIKE',"%$apellido%");
+        }
+    }
+    public function scopeEmail($query,$email){
+        if(trim($email)!=""){
+            $query->where('email','LIKE',"%$email%");
+        }
+    }
+    public function scopeStatus($query,$estado){
+        if(trim($estado)!=""){
+            $query->where('status','LIKE',"%$estado%");
+        }
+    }
 }

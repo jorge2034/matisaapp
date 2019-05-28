@@ -16,7 +16,8 @@ class CreateMonedasTable extends Migration
         Schema::create('monedas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('simbolo');
+            $table->string('simbolo')->nullable();
+            $table->string('status')->default('ENABLED');
             $table->integer('company_id')->unsigned()->index();
             $table->foreign('company_id')->references('id')->on('companies');
             $table->softDeletes();

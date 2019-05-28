@@ -77,4 +77,20 @@ Route::middleware('auth')->group(function (){
         ->middleware('permission:users.destroy');
     Route::get('config/users/{user}/edit','UserController@edit')->name('config.users.edit')
         ->middleware('permission:users.edit');
+
+    //Company
+    Route::get('config/empresas','EmpresaController@index')->name('config.empresas.index')
+        ->middleware('permission:empresas.index');
+    Route::post('config/empresas/store','EmpresaController@store')->name('config.empresas.store')
+        ->middleware('permission:empresas.create');
+    Route::get('config/empresas/create','EmpresaController@create')->name('config.empresas.create')
+        ->middleware('permission:empresas.create');
+    Route::put('config/empresas/{empresa}','EmpresaController@update')->name('config.empresas.update')
+        ->middleware('permission:empresas.edit');
+    Route::get('config/empresas/{empresa}','EmpresaController@show')->name('config.empresas.show')
+        ->middleware('permission:empresas.show');
+    Route::delete('config/empresas/{empresa}','EmpresaController@destroy')->name('config.empresas.destroy')
+        ->middleware('permission:empresas.destroy');
+    Route::get('config/empresas/{empresa}/edit','EmpresaController@edit')->name('config.empresas.edit')
+        ->middleware('permission:empresas.edit');
 });

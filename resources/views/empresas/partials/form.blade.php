@@ -1,10 +1,18 @@
 <div class="form-group">
-    {{Form::label('name', 'Nombre de la Empresa')}}
-    {{Form::text('name',null,['class'=>'form-control'])}}
+    {{Form::label('nombre', 'Nombre de la Empresa')}}
+    {{Form::text('nombre',null,['class'=>'form-control'])}}
 </div>
 <div class="form-group">
-    {{Form::label('simbolo', 'Descripcion de la Empresa')}}
-    {{Form::text('simbolo',null,['class'=>'form-control'])}}
+    {{Form::label('descripcion', 'Descripcion de la Empresa')}}
+    {{Form::text('descripcion',null,['class'=>'form-control'])}}
+</div>
+<div class="form-group">
+    {{Form::label('direccion1', 'Direccion de la Empresa')}}
+    {{Form::text('direccion1',null,['class'=>'form-control'])}}
+</div>
+<div class="form-group">
+    {{Form::label('telefono1', 'Telefono de la Empresa')}}
+    {{Form::text('telefono1',null,['class'=>'form-control'])}}
 </div>
 <div class="form-group">
     {{Form::submit('Guardar',['class'=>'btn btn-sm btn-primary'])}}
