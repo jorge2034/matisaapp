@@ -48895,7 +48895,7 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nTypeError: Cannot read property 'parseComponent' of undefined\n    at parse (C:\\wamp64\\www\\matisasys\\node_modules\\@vue\\component-compiler-utils\\dist\\parse.js:14:23)\n    at Object.module.exports (C:\\wamp64\\www\\matisasys\\node_modules\\vue-loader\\lib\\index.js:67:22)");
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nTypeError: Cannot read property 'parseComponent' of undefined\n    at parse (C:\\wamp64\\www\\matisaapp\\node_modules\\@vue\\component-compiler-utils\\dist\\parse.js:14:23)\n    at Object.module.exports (C:\\wamp64\\www\\matisasys\\node_modules\\vue-loader\\lib\\index.js:67:22)");
 
 /***/ }),
 

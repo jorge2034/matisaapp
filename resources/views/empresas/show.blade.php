@@ -16,6 +16,7 @@
                         <p><strong>Descripcion: </strong>{{$empresa->descripcion}}</p>
                         <p><strong>Direccion: </strong>{{$empresa->direccion1}}</p>
                         <p><strong>Telefono: </strong>{{$empresa->telefono1}}</p>
+                        <p><strong>Estado: </strong>{!! estado($empresa->status)!!}</p>
                     </div>
 
                 </div>
