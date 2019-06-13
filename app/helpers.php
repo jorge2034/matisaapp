@@ -5,7 +5,7 @@ function active($path,$opt=0){
 }
 
 function estado($status){
-        return isset($status)=='ENABLED'?'Activo':'Inactivo';
+        return $status=='ENABLED'?'<span class="badge badge-success">Activo</span>':'<span class="badge badge-danger">Inactivo</span>';
 }
 
 ?>
