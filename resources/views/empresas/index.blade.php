@@ -20,7 +20,6 @@
                     </div>
 
                     <div class="card-body">
-                    <div class="table-responsive">
                       <table class="table table-bordered table-striped dataTable" role="grid" id="tabla">
                           <thead>
                           <tr>
@@ -44,7 +43,7 @@
                                   <td>{{$empresa->descripcion}}</td>
                                   <td>{{$empresa->direccion1}}</td>
                                   <td>{{$empresa->telefono1}}</td>
-                                  <td class="text-center">{!!estado($empresa->status)!!}</td>
+                                  <td>{{estado($empresa->status)}}</td>
 
                                   <td width="100px" class="text-center">
                                       <div class="accion">
@@ -71,7 +70,6 @@
                           @endforeach
                           </tbody>
                       </table>
-</div>
                         {{--{{$empresas->render()}}--}}
                     </div>
                 </div>

@@ -318,7 +318,7 @@
   </component>
   <component name="PhpServers">
     <servers>
-      <server host="http://matisaapp.dev" id="7b4ab08a-51cc-4952-a14e-d12b155fee00" name="Matisaapp" />
+      <server host="http://matisasys.test" id="7b4ab08a-51cc-4952-a14e-d12b155fee00" name="Matisaapp" />
     </servers>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
