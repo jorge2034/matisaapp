@@ -1,0 +1,151 @@
+@extends('layouts.app1')
+@section('title','Empresas')
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('empresas') }}
+@endsection
+@section('content')
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+
+                {{--Filtros--}}
+               @include('empresas.partials.filter')
+
+                <div class="card card-primary card-outline">
+                    <div class="card-header h5">
+                        Resultados
+                        @can('empresas.create')
+                        <a href="{{route('config.empresas.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
+                        @endcan
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                      <table class="table table-bordered table-striped dataTable" role="grid" id="tabla">
+                          <thead>
+                          <tr>
+                              <th>Nº</th>
+                              <th>Nombre</th>
+                              <th>Descripción</th>
+                              <th>Dirección</th>
+                              <th>Teléfono</th>
+                              <th>Estado</th>
+                              <th>Acción</th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                          @php
+                          $cont = 0;
+                          @endphp
+                          @foreach($empresas as $empresa)
+                              <tr>
+                                  <td>{{++$cont}}</td>
+                                  <td>{{$empresa->nombre}}</td>
+                                  <td>{{$empresa->descripcion}}</td>
+                                  <td>{{$empresa->direccion1}}</td>
+                                  <td>{{$empresa->telefono1}}</td>
+                                  <td class="text-center">{!!estado($empresa->status)!!}</td>
+
+                                  <td width="100px" class="text-center">
+                                      <div class="accion">
+                                              @can('empresas.show')
+                                              <a href="{{route('config.empresas.show',$empresa->id)}}"
+                                                 title="Ver" class="btn btn-sm  btn-accion">
+                                                  <i class="fa fa-eye"></i>
+                                              </a>
+                                              @endcan
+                                              @can('empresas.edit')
+                                              <a href="{{route('config.empresas.edit',$empresa->id)}}"
+                                                 title="Modificar" class="btn btn-sm  btn-accion">
+                                                  <i class="fa fa-edit"></i>
+                                              </a>
+                                              @endcan
+                                              @can('empresas.destroy')
+                                              <a href="#" onclick="borrar({{$empresa->id}})" title="Eliminar" class="btn btn-sm btn-borrar btn-accion">
+                                                  <i class="fa fa-trash-o"></i>
+                                              </a>
+                                              @endcan
+                                      </div>
+                                  </td>
+                              </tr>
+                          @endforeach
+                          </tbody>
+                      </table>
+                            </div>
+                        {{--{{$empresas->render()}}--}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
+@section('scriptDataTable')
+    <script>
+        $(function() {
+            $('.select2').select2();
+            $('#tabla').DataTable({
+                "language": {
+                    "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                "paging": true,
+                "lengthChange": true,
+                //"lengthMenu": [[5, 10, 20, 25, 50, -1], [5, 10, 20, 25, 50, "Todos"]],
+                //"iDisplayLength":			10,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false,
+                //cambiar orden de columnas segun corresponda para evitar errores
+                "columnDefs": [
+                    { "orderable": false, "targets": [6] }
+                ],
+                responsive: {
+                    breakpoints: [
+                        {name: 'bigdesktop', width: Infinity},
+                        {name: 'meddesktop', width: 1480},
+                        {name: 'smalldesktop', width: 1280},
+                        {name: 'medium', width: 1188},
+                        {name: 'tabletl', width: 1024},
+                        {name: 'btwtabllandp', width: 848},
+                        {name: 'tabletp', width: 768},
+                        {name: 'mobilel', width: 480},
+                        {name: 'mobilep', width: 320}
+                    ]
+                }
+            });
+        } );
+
+        function borrar(id){
+            $.confirm({
+                title: 'Confirmar',
+                content: '¿Está seguro que desea eliminar el registro?',
+                buttons: {
+                    aceptar: function () {
+                        console.log(id);
+                        var ide = id;
+                        var token = $("meta[name='csrf-token']").attr("content");
+                        $.ajax(
+                                {
+                                    url: "empresas/"+ide,
+                                    type: 'DELETE',
+                                    data: {
+                                        "id": ide,
+                                        "_token": token
+                                    },
+                                    success: function (){
+                                        console.log("Eliminado");
+                                        location.reload();
+                                        //$('#fila'+ide).closest('tr').remove();
+                                    }
+                                });
+
+                    },
+                    cancelar: function () {
+                    }
+                }
+            });
+        }
+    </script>
+@endsection

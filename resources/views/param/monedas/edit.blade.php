@@ -10,7 +10,7 @@
 
                     <div class="card-body">
                       {!! Form::model($moneda,['route'=>['parametros.monedas.update',$moneda->id],'method'=>'PUT']) !!}
-                        @include('monedas.partials.form')
+                        @include('param.monedas.partials.form')
                       {!! Form::close() !!}
 
                     </div>

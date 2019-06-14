@@ -10,7 +10,7 @@
 
                     <div class="card-body">
                         {!! Form::open(['route'=>'parametros.monedas.store']) !!}
-                        @include('monedas.partials.form')
+                        @include('param.monedas.partials.form')
                         {!! Form::close() !!}
 
                     </div>

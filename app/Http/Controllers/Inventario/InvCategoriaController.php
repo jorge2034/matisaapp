@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Moneda;
+use App\InvCategoria;
 use Illuminate\Http\Request;
 
-class MonedaController extends Controller
+class InvCategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class MonedaController extends Controller
      */
     public function index()
     {
-        $monedas = Moneda::all();
-        return view('param.monedas.index',['monedas'=>$monedas]);
+        //
     }
 
     /**
@@ -25,7 +24,7 @@ class MonedaController extends Controller
      */
     public function create()
     {
-        return view('param.monedas.create');
+        //
     }
 
     /**
@@ -36,56 +35,51 @@ class MonedaController extends Controller
      */
     public function store(Request $request)
     {
-        $moneda = Moneda::create($request->all());
-        return redirect()->route('parametros.monedas.edit',$moneda->id)
-            ->with('info','Producto guardado con exito');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Moneda  $moneda
+     * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function show(Moneda $moneda)
+    public function show(InvCategoria $invCategoria)
     {
-        return view('param.monedas.show',compact('moneda'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Moneda  $moneda
+     * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Moneda $moneda)
+    public function edit(InvCategoria $invCategoria)
     {
-        return view('param.monedas.edit',compact('moneda'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Moneda  $moneda
+     * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Moneda $moneda)
+    public function update(Request $request, InvCategoria $invCategoria)
     {
-        $moneda->update($request->all());
-        return redirect()->route('parametros.monedas.edit',$moneda->id)
-            ->with('info','Producto actualizado con exito');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Moneda  $moneda
+     * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Moneda $moneda)
+    public function destroy(InvCategoria $invCategoria)
     {
-        $moneda->delete();
-        return back()->with('info','Eliminado correctamente');
+        //
     }
 }
