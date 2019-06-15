@@ -18,13 +18,13 @@ class InvCategoriaController extends Controller
     {
         $estados = InvCategoria::getArrayStatus();
 
-        // dd($request);
+         //dd($request);
         $filtro = count($request->toArray())?true:false;
         $invcategorias = InvCategoria::nombre($request->get('nombreF'))
             ->descripcion($request->get('descripcionF'))
-            ->color($request->get('colorF'))
             ->status($request->get('estadoF'))
             ->get();
+
         return view('inventario.categorias.index',['invcategorias'=>$invcategorias,'filtro'=>$filtro,'estados'=>$estados]);
     }
 
@@ -46,6 +46,7 @@ class InvCategoriaController extends Controller
      */
     public function store(InvCategoriaRequest $request)
     {
+
         $invcategorias = InvCategoria::create($request->all());
         return redirect()->route('inventario.categorias.create',$invcategorias)
             ->with('info','Categoria guardada con exito');
@@ -57,9 +58,9 @@ class InvCategoriaController extends Controller
      * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function show(InvCategoria $invCategoria)
+    public function show(InvCategoria $invcategoria)
     {
-        return view('inventarios.categorias.show',compact('invCategoria'));
+        return view('inventario.categorias.show',compact('invcategoria'));
     }
 
     /**
@@ -68,9 +69,9 @@ class InvCategoriaController extends Controller
      * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(InvCategoria $invCategoria)
+    public function edit(InvCategoria $invcategoria)
     {
-        return view('inventarios.categorias.edit',compact('invCategoria'));
+        return view('inventario.categorias.edit',compact('invcategoria'));
     }
 
     /**
@@ -80,10 +81,10 @@ class InvCategoriaController extends Controller
      * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(InvCategoriaRequest $request, InvCategoria $invCategoria)
+    public function update(InvCategoriaRequest $request, InvCategoria $invcategoria)
     {
-        $invCategoria->update($request->all());
-        return redirect()->route('inventario.categorias.edit',$invCategoria->id)
+        $invcategoria->update($request->all());
+        return redirect()->route('inventario.categorias.edit',$invcategoria->id)
             ->with('info','Categoria actualizada con exito');
     }
 

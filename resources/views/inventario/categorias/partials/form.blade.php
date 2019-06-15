@@ -10,6 +10,7 @@
     {{Form::label('color', 'Color')}}
     {{Form::color('color',null,['class'=>'form-control'])}}
 </div>
+{{Form::hidden('company_id',1)}}
 <div class="form-group">
     {{Form::submit('Guardar',['class'=>'btn btn-sm btn-primary'])}}
 </div>

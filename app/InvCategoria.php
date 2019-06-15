@@ -12,7 +12,7 @@ class InvCategoria extends Model
     const ENABLED = 'ENABLED', ENABLED_TXT = 'Activo';
     const DISABLED = 'DISABLED', DISABLED_TXT = 'Inactivo';
     protected $fillable = [
-        'nombre', 'descripcion', 'color'
+        'nombre','company_id', 'descripcion', 'color'
     ];
 
     public static function getArrayStatus()
@@ -35,7 +35,7 @@ class InvCategoria extends Model
     }
     public function scopeColor($query,$color){
         if(trim($color)!=""){
-            $query->where('email','LIKE',"%$color%");
+            $query->where('color','LIKE',"%$color%");
         }
     }
     public function scopeStatus($query,$estado){

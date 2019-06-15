@@ -41,13 +41,13 @@
                                   <td>{{++$cont}}</td>
                                   <td>{{$invcategoria->nombre}}</td>
                                   <td>{{$invcategoria->descripcion}}</td>
-                                  <td>{{$invcategoria->color}}</td>
+                                  <td class="text-center"><i class="fa fa-2x fa-circle" style="color:{{$invcategoria->color}}"></i></td>
                                   <td class="text-center">{!!estado($invcategoria->status)!!}</td>
 
                                   <td width="100px" class="text-center">
                                       <div class="accion">
                                               @can('invcategorias.show')
-                                              <a href="{{route('inventario.categorias.show',$invcategoria->id)}}"
+                                              <a href="{{route('inventario.categorias.show',$invcategoria)}}"
                                                  title="Ver" class="btn btn-sm  btn-accion">
                                                   <i class="fa fa-eye"></i>
                                               </a>
@@ -126,7 +126,7 @@
                         var token = $("meta[name='csrf-token']").attr("content");
                         $.ajax(
                                 {
-                                    url: "inventario/categorias/"+ide,
+                                    url: "categorias/"+ide,
                                     type: 'DELETE',
                                     data: {
                                         "id": ide,

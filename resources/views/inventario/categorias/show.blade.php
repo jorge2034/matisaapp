@@ -15,7 +15,7 @@
                         <p><strong>Nombre: </strong>{{$invcategoria->nombre}}</p>
                         <p><strong>Descripcion: </strong>{{$invcategoria->descripcion}}</p>
                         <p><strong>Color:: </strong>{{$invcategoria->color}}</p>
-                        <p><strong>Estado: </strong>{!! estado($empresa->status)!!}</p>
+                        <p><strong>Estado: </strong>{!! estado($invcategoria->status)!!}</p>
                     </div>
 
                 </div>

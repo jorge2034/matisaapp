@@ -13,7 +13,7 @@ class InvCategoriaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class InvCategoriaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nombre' => 'required',
+
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'nombre.required' => 'El nombre es obligatorio',
+
         ];
     }
 }

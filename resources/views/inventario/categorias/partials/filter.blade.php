@@ -22,11 +22,6 @@
                 <input type="text" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="descripcionF" name="descripcionF" value="{{Request()->descripcionF}}">
             </div>
             <div class="inputfilter">
-                <label for="colorF" class="blockfilter mr-sm-2">Color</label>
-                <input type="color" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="colorF" name="colorF" value="{{Request()->colorF}}">
-
-            </div>
-            <div class="inputfilter">
                 <label class="blockfilter mr-sm-2" for="estadoF">Estado</label>
                 <select class="form-control blockfilter select2 mb-2 mr-sm-2 mb-sm-0" name="estadoF" tabindex="-1" id="estadoF">
                     @foreach($estados as $value => $estado)

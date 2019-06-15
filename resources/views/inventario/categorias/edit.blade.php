@@ -1,7 +1,7 @@
 @extends('layouts.app1')
 @section('title','Categorias - Inventario')
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('invcategorias.edit',$invcategorias) }}
+    {{ Breadcrumbs::render('invcategorias.edit',$invcategoria) }}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                       @include('layouts.partials.error')
-                      {!! Form::model($invcategorias,['route'=>['inventario.categorias.update',$invcategorias->id],'method'=>'PUT']) !!}
+                      {!! Form::model($invcategoria,['route'=>['inventario.categorias.update',$invcategoria->id],'method'=>'PUT']) !!}
                         @include('inventario.categorias.partials.form')
                       {!! Form::close() !!}
 
