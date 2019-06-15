@@ -146,7 +146,7 @@
                         </li>
                         @endcan
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('inventario.categorias.index')}}" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>Categorías</p>
                             </a>

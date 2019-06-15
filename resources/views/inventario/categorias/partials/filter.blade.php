@@ -11,19 +11,19 @@
     <!-- /.card-header -->
     <div class="card-body" style="display: block;">
 
-        {!! Form::open(['route'=>'config.empresas.index','method'=>'GET', 'class'=>'form-inline'])!!}
+        {!! Form::open(['route'=>'inventario.categorias.index','method'=>'GET', 'class'=>'form-inline'])!!}
         <section>
             <div class="inputfilter">
                 <label for="nombreF" class="blockfilter mr-sm-2">Nombre</label>
                 <input type="text" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="nombreF" name="nombreF" value="{{Request()->nombreF}}">
             </div>
             <div class="inputfilter">
-                <label for="direccionF" class="blockfilter mr-sm-2">Dirección</label>
-                <input type="text" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="direccionF" name="direccionF" value="{{Request()->direccionF}}">
+                <label for="descripcionF" class="blockfilter mr-sm-2">Descripción</label>
+                <input type="text" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="descripcionF" name="descripcionF" value="{{Request()->descripcionF}}">
             </div>
             <div class="inputfilter">
-                <label for="telefonoF" class="blockfilter mr-sm-2">Telefono</label>
-                <input type="text" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="telefonoF" name="telefonoF" value="{{Request()->telefonoF}}">
+                <label for="colorF" class="blockfilter mr-sm-2">Color</label>
+                <input type="color" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="colorF" name="colorF" value="{{Request()->colorF}}">
 
             </div>
             <div class="inputfilter">
@@ -42,7 +42,7 @@
             @if($filtro)
                 <div class="inputfilter">
                     <label>&nbsp;</label>
-                    <a href="{{route('config.empresas.index')}}" class="btn btn-default btn-filtro">Finalizar búsqueda</a>
+                    <a href="{{route('inventario.categorias.index')}}" class="btn btn-default btn-filtro">Finalizar búsqueda</a>
                 </div>
             @endif
         </section>

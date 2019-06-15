@@ -15,6 +15,8 @@ class CreateInvCategoriasTable extends Migration
     {
         Schema::create('inv_categorias', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id')->unsigned()->index();
+            $table->foreign('company_id')->references('id')->on('companies');
             $table->string('nombre');
             $table->string('descripcion')->nullable();;
             $table->string('color')->nullable();

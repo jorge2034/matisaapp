@@ -23,4 +23,24 @@ class InvCategoria extends Model
         );
         return $estado;
     }
+    public function scopeNombre($query,$name){
+        if(trim($name)!=""){
+            $query->where('nombre','LIKE',"%$name%");
+        }
+    }
+    public function scopeDescripcion($query,$descripcion){
+        if(trim($descripcion)!=""){
+            $query->where('descripcion','LIKE',"%$descripcion%");
+        }
+    }
+    public function scopeColor($query,$color){
+        if(trim($color)!=""){
+            $query->where('email','LIKE',"%$color%");
+        }
+    }
+    public function scopeStatus($query,$estado){
+        if(trim($estado)!=""){
+            $query->where('status','LIKE',"%$estado%");
+        }
+    }
 }

@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventario;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\InvCategoriaRequest;
 use App\InvCategoria;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,18 @@ class InvCategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $estados = InvCategoria::getArrayStatus();
+
+        // dd($request);
+        $filtro = count($request->toArray())?true:false;
+        $invcategorias = InvCategoria::nombre($request->get('nombreF'))
+            ->descripcion($request->get('descripcionF'))
+            ->color($request->get('colorF'))
+            ->status($request->get('estadoF'))
+            ->get();
+        return view('inventario.categorias.index',['invcategorias'=>$invcategorias,'filtro'=>$filtro,'estados'=>$estados]);
     }
 
     /**
@@ -24,7 +35,7 @@ class InvCategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventario.categorias.create');
     }
 
     /**
@@ -33,9 +44,11 @@ class InvCategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(InvCategoriaRequest $request)
     {
-        //
+        $invcategorias = InvCategoria::create($request->all());
+        return redirect()->route('inventario.categorias.create',$invcategorias)
+            ->with('info','Categoria guardada con exito');
     }
 
     /**
@@ -46,7 +59,7 @@ class InvCategoriaController extends Controller
      */
     public function show(InvCategoria $invCategoria)
     {
-        //
+        return view('inventarios.categorias.show',compact('invCategoria'));
     }
 
     /**
@@ -57,7 +70,7 @@ class InvCategoriaController extends Controller
      */
     public function edit(InvCategoria $invCategoria)
     {
-        //
+        return view('inventarios.categorias.edit',compact('invCategoria'));
     }
 
     /**
@@ -67,9 +80,11 @@ class InvCategoriaController extends Controller
      * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InvCategoria $invCategoria)
+    public function update(InvCategoriaRequest $request, InvCategoria $invCategoria)
     {
-        //
+        $invCategoria->update($request->all());
+        return redirect()->route('inventario.categorias.edit',$invCategoria->id)
+            ->with('info','Categoria actualizada con exito');
     }
 
     /**
@@ -78,8 +93,13 @@ class InvCategoriaController extends Controller
      * @param  \App\InvCategoria  $invCategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InvCategoria $invCategoria)
+    public function destroy($id)
     {
-        //
+        $invcategorias = InvCategoria::find($id);
+        $invcategorias->delete();
+        return response()->json([
+            'success' => 'Registro eliminado exitosamente!'
+        ]);
+        // return back();//->with('info','Eliminado correctamente');
     }
 }

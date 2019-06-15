@@ -93,4 +93,20 @@ Route::middleware('auth')->group(function (){
         ->middleware('permission:empresas.destroy');
     Route::get('config/empresas/{empresa}/edit','EmpresaController@edit')->name('config.empresas.edit')
         ->middleware('permission:empresas.edit');
+
+    //Inventario Categorias
+    Route::post('inventario/categorias/store','Inventario\InvCategoriaController@store')->name('inventario.categorias.store')
+        ->middleware('permission:invcategorias.create');
+    Route::get('inventario/categorias','Inventario\InvCategoriaController@index')->name('inventario.categorias.index')
+        ->middleware('permission:invcategorias.index');
+    Route::get('inventario/categorias/create','Inventario\InvCategoriaController@create')->name('inventario.categorias.create')
+        ->middleware('permission:invcategorias.create');
+    Route::put('inventario/categorias/{invcategoria}','Inventario\InvCategoriaController@update')->name('inventario.categorias.update')
+        ->middleware('permission:invcategorias.edit');
+    Route::get('inventario/categorias/{invcategoria}','Inventario\InvCategoriaController@show')->name('inventario.categorias.show')
+        ->middleware('permission:invcategorias.show');
+    Route::delete('inventario/categorias/{invcategoria}','Inventario\InvCategoriaController@destroy')->name('inventario.categorias.destroy')
+        ->middleware('permission:invcategorias.destroy');
+    Route::get('inventario/categorias/{invcategoria}/edit','Inventario\InvCategoriaController@edit')->name('inventario.categorias.edit')
+        ->middleware('permission:invcategorias.edit');
 });

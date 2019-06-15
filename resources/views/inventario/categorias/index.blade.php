@@ -1,7 +1,7 @@
 @extends('layouts.app1')
-@section('title','Empresas')
+@section('title','Categorias - Inventario')
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('empresas') }}
+    {{ Breadcrumbs::render('invcategorias') }}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -9,13 +9,13 @@
             <div class="col-md-12">
 
                 {{--Filtros--}}
-               @include('empresas.partials.filter')
+               @include('inventario.categorias.partials.filter')
 
                 <div class="card card-primary card-outline">
                     <div class="card-header h5">
                         Resultados
-                        @can('empresas.create')
-                        <a href="{{route('config.empresas.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
+                        @can('invcategorias.create')
+                        <a href="{{route('inventario.categorias.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
                         @endcan
                     </div>
 
@@ -27,8 +27,7 @@
                               <th>Nº</th>
                               <th>Nombre</th>
                               <th>Descripción</th>
-                              <th>Dirección</th>
-                              <th>Teléfono</th>
+                              <th>Color</th>
                               <th>Estado</th>
                               <th>Acción</th>
                           </tr>
@@ -37,31 +36,30 @@
                           @php
                           $cont = 0;
                           @endphp
-                          @foreach($empresas as $empresa)
+                          @foreach($invcategorias as $invcategoria)
                               <tr>
                                   <td>{{++$cont}}</td>
-                                  <td>{{$empresa->nombre}}</td>
-                                  <td>{{$empresa->descripcion}}</td>
-                                  <td>{{$empresa->direccion1}}</td>
-                                  <td>{{$empresa->telefono1}}</td>
-                                  <td class="text-center">{!!estado($empresa->status)!!}</td>
+                                  <td>{{$invcategoria->nombre}}</td>
+                                  <td>{{$invcategoria->descripcion}}</td>
+                                  <td>{{$invcategoria->color}}</td>
+                                  <td class="text-center">{!!estado($invcategoria->status)!!}</td>
 
                                   <td width="100px" class="text-center">
                                       <div class="accion">
-                                              @can('empresas.show')
-                                              <a href="{{route('config.empresas.show',$empresa->id)}}"
+                                              @can('invcategorias.show')
+                                              <a href="{{route('inventario.categorias.show',$invcategoria->id)}}"
                                                  title="Ver" class="btn btn-sm  btn-accion">
                                                   <i class="fa fa-eye"></i>
                                               </a>
                                               @endcan
-                                              @can('empresas.edit')
-                                              <a href="{{route('config.empresas.edit',$empresa->id)}}"
+                                              @can('invcategorias.edit')
+                                              <a href="{{route('inventario.categorias.edit',$invcategoria->id)}}"
                                                  title="Modificar" class="btn btn-sm  btn-accion">
                                                   <i class="fa fa-edit"></i>
                                               </a>
                                               @endcan
-                                              @can('empresas.destroy')
-                                              <a href="#" onclick="borrar({{$empresa->id}})" title="Eliminar" class="btn btn-sm btn-borrar btn-accion">
+                                              @can('invcategorias.destroy')
+                                              <a href="#" onclick="borrar({{$invcategoria->id}})" title="Eliminar" class="btn btn-sm btn-borrar btn-accion">
                                                   <i class="fa fa-trash-o"></i>
                                               </a>
                                               @endcan
@@ -99,7 +97,7 @@
                 "autoWidth": false,
                 //cambiar orden de columnas segun corresponda para evitar errores
                 "columnDefs": [
-                    { "orderable": false, "targets": [6] }
+                    { "orderable": false, "targets": [5] }
                 ],
                 responsive: {
                     breakpoints: [
@@ -128,7 +126,7 @@
                         var token = $("meta[name='csrf-token']").attr("content");
                         $.ajax(
                                 {
-                                    url: "empresas/"+ide,
+                                    url: "inventario/categorias/"+ide,
                                     type: 'DELETE',
                                     data: {
                                         "id": ide,
