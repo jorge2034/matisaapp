@@ -12,7 +12,7 @@
 <script src="/adminlte/plugins/select2/select2.full.min.js"></script>
 <script src="/adminlte/plugins/jquery-confirm/dist/jquery-confirm.min.js"></script>
 
-
-</script>
+<script src="/adminlte/plugins/dropzone/min/dropzone.min.js"></script>
+@yield('jsporvista')
 @yield('scriptDataTable')
 

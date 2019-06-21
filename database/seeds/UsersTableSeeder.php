@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         factory(App\User::class,20)->create();
-        User::create([
+        $user = User::create([
             'name'  =>'Jorge',
             'lastname'  =>'Arce',
             'email'  =>'jorge2034@gmail.com',
@@ -24,11 +24,13 @@ class UsersTableSeeder extends Seeder
             'created_at' => '2019-03-27 16:40:08',
             'updated_at' => '2019-03-27 16:40:08',
         ]);
-        Role::create([
+        $rol = Role::create([
             'name'=>'Admin',
             'slug'=>'admin',
             'company_id' => 1,
             'special'=>'all-access'
         ]);
+        $rol->users()->attach($user->id);
+
     }
 }

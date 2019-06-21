@@ -151,6 +151,14 @@
                                 <p>Categorías</p>
                             </a>
                         </li>
+                        @can('marcas.index')
+                        <li class="nav-item">
+                            <a href="{{route('inventario.marcas.index')}}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Marcas</p>
+                            </a>
+                        </li>
+                        @endcan
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>

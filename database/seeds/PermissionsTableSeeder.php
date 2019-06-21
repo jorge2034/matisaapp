@@ -18,7 +18,8 @@ class PermissionsTableSeeder extends Seeder
             'roles' => 'roles',
             'monedas' => 'monedas',
             'empresas' => 'empresas',
-            'invcategorias'=>'categorias(Inventario)'
+            'invcategorias'=>'categorias(Inventario)',
+            'invmarcas' => 'marcas(Inventario)'
         );
         $this->generarPermisos($permisos);
     }
