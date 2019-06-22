@@ -13,8 +13,4 @@ class Archivo extends Model
         return \Storage::url($this->ruta);
     }
 
-    //relacion
-    public function invmarca(){
-        return $this->belongsTo('App\InvMarca','image_id');
-    }
 }

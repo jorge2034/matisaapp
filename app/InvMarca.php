@@ -12,9 +12,17 @@ class InvMarca extends Model
     const ENABLED = 'ENABLED', ENABLED_TXT = 'Activo';
     const DISABLED = 'DISABLED', DISABLED_TXT = 'Inactivo';
     protected $fillable = [
-        'nombre','company_id', 'descripcion', 'image_id'
+        'nombre','company_id', 'descripcion', 'archivo_id'
     ];
 
+
+    //RELACIONES
+    public function company(){
+        return $this->belongsTo('App\Company','company_id');
+    }
+    public function archivos(){
+        return $this->belongsTo('App\Archivo','archivo_id');
+    }
     public static function getArrayStatus()
     {
         $estado = array(

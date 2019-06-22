@@ -15,6 +15,8 @@ class Company extends Model
         'nombre', 'descripcion', 'direccion1','telefono1',
     ];
 
+    //relaciones
+
     public static function getArrayStatus()
     {
             $estado = array(

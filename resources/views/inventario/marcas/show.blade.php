@@ -14,7 +14,11 @@
                     <div class="card-body">
                         <p><strong>Nombre: </strong>{{$invmarca->nombre}}</p>
                         <p><strong>Descripcion: </strong>{{$invmarca->descripcion}}</p>
-                        <p><strong>Imagen:: </strong>{{$invmarca->srcimage}}</p>
+                        <p><strong>Imagen: </strong>
+                        <div class="text-center">
+                            <img class="rounded img-show-custom" src="{{$invmarca->archivos->url_path}}" alt="">
+                        </div>
+                        </p>
                         <p><strong>Estado: </strong>{!! estado($invmarca->status)!!}</p>
                     </div>
 

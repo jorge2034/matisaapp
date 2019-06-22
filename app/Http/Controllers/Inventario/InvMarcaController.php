@@ -53,7 +53,7 @@ class InvMarcaController extends Controller
             $path = $request->srcimage->store('public');
             $imagen= Archivo::create(['company_id'=>1,'nombre'=>$path,'ruta'=>$path]);
         }
-        $request->request->add(['image_id'=>$imagen->id]);
+        $request->request->add(['archivo_id'=>$imagen->id]);
        // dd($request);
         $invmarcas = InvMarca::create($request->all());
         return redirect()->route('inventario.marcas.create',$invmarcas)

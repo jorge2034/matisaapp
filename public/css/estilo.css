@@ -30,3 +30,12 @@
 .inputfilter{
     float:left;
 }
+
+.img-table-custom{
+    width: 150px;
+    height: 150px;
+}
+.img-show-custom{
+    width: 300px;
+    height: 300px;
+}

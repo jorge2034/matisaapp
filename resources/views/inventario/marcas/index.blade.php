@@ -41,7 +41,11 @@
                                   <td>{{++$cont}}</td>
                                   <td>{{$invmarca->nombre}}</td>
                                   <td>{{$invmarca->descripcion}}</td>
-                                  <td><img src="{{$invmarca->files->ruta}}" alt=""></td>
+                                  <td>
+                                      <div class="text-center">
+                                      <img class="rounded  img-thumbnail img-table-custom" src="{{$invmarca->archivos->url_path}}" alt="">
+                                      </div>
+                                  </td>
                                   <td class="text-center">{!!estado($invmarca->status)!!}</td>
 
                                   <td width="100px" class="text-center">

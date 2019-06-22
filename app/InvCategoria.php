@@ -14,6 +14,10 @@ class InvCategoria extends Model
     protected $fillable = [
         'nombre','company_id', 'descripcion', 'color'
     ];
+//RELACIONES
+    public function company(){
+        return $this->belongsTo('App\Company','company_id');
+    }
 
     public static function getArrayStatus()
     {
