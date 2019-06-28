@@ -1,0 +1,101 @@
+<?php
+
+{{namespace}}
+
+use App\{{modelName}};
+use Illuminate\Http\Request;
+use App\Http\Requests\{{modelName}}Request;
+
+class {{modelName}}Controller extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $request)
+    {
+        $estados = {{modelName}}::getArrayStatus();
+        $filtro = count($request->toArray())?true:false;
+        ${{variable}} = {{modelName}}::nombre($request->get('nombreF'))
+            ->descripcion($request->get('descripcionF'))
+            ->status($request->get('estadoF'))
+            ->get();
+        return view('{{rutaView}}.index',['{{variable}}'=>${{variable}},'filtro'=>$filtro,'estados'=>$estados]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('{{rutaView}}.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store({{modelName}}Request $request)
+    {
+        ${{variable}} = {{modelName}}::create($request->all());
+        return redirect()->route('{{rutaView}}.create',${{variable}})
+            ->with('info','Registro guardado con exito');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\{{modelName}}  ${{variable}}
+     * @return \Illuminate\Http\Response
+     */
+    public function show({{modelName}} ${{variable}})
+    {
+       // dd(${{variable}});
+        return view('{{rutaView}}.show',compact('{{variable}}'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\{{modelName}}  ${{variable}}
+     * @return \Illuminate\Http\Response
+     */
+    public function edit({{modelName}} ${{variable}})
+    {
+        return view('{{rutaView}}.edit',compact('{{variable}}'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\{{modelName}}  ${{variable}}
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{modelName}}Request $request, {{modelName}} ${{variable}})
+    {
+        ${{variable}}->update($request->all());
+        return redirect()->route('{{rutaView}}.edit',${{variable}}->id)
+            ->with('info','Registro actualizado con exito');
+    }
+
+    /**
+ * Remove the specified resource from storage.
+ *
+ * @param  \App\{{modelName}}  ${{variable}}
+ * @return \Illuminate\Http\Response
+ */
+    public function destroy($id)
+    {
+        ${{variable}} = {{modelName}}::find($id);
+        ${{variable}}->delete();
+        return response()->json([
+            'success' => 'Registro eliminado exitosamente!'
+        ]);
+    }
+}

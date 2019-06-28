@@ -79,3 +79,25 @@ Breadcrumbs::for('invmarcas.edit', function ($trail,$invmarca) {
     $trail->parent('invmarcas');
     $trail->push('Editar', route('inventario.marcas.edit', $invmarca));
 });
+
+// escritorio > InvVehiculos
+Breadcrumbs::for('invVehiculos', function ($trail) {
+    $trail->parent('escritorio');
+    $trail->push('Vehiculos (Inventario)', route('inventario.vehiculos.index'));
+});
+
+// Escritorio > InvVehiculos > [InvVehiculos]
+Breadcrumbs::for('invVehiculos.show', function ($trail, $invVehiculos) {
+    $trail->parent('invVehiculos');
+    $trail->push($invVehiculos->nombre, route('inventario.vehiculos.show', $invVehiculos));
+});
+// Escritorio > InvVehiculos > Crear InvVehiculos
+Breadcrumbs::for('invVehiculos.create', function ($trail) {
+    $trail->parent('invVehiculos');
+    $trail->push('Crear', route('inventario.vehiculos.create'));
+});
+// Escritorio > InvVehiculos > [InvVehiculos]
+Breadcrumbs::for('invVehiculos.edit', function ($trail,$invVehiculos) {
+    $trail->parent('invVehiculos');
+    $trail->push('Editar', route('inventario.vehiculos.edit', $invVehiculos));
+});

@@ -125,4 +125,20 @@ Route::middleware('auth')->group(function (){
         ->middleware('permission:invmarcas.destroy');
     Route::get('inventario/marcas/{invmarca}/edit','Inventario\InvMarcaController@edit')->name('inventario.marcas.edit')
         ->middleware('permission:invmarcas.edit');
+
+    //Inventario Vehiculos
+    Route::post('inventario/vehiculos/store','Inventario\InvVehiculoController@store')->name('inventario.vehiculos.store')
+        ->middleware('permission:invVehiculos.create');
+    Route::get('inventario/vehiculos','Inventario\InvVehiculoController@index')->name('inventario.vehiculos.index')
+        ->middleware('permission:invVehiculos.index');
+    Route::get('inventario/vehiculos/create','Inventario\InvVehiculoController@create')->name('inventario.vehiculos.create')
+        ->middleware('permission:invVehiculos.create');
+    Route::put('inventario/vehiculos/{invVehiculos}','Inventario\InvVehiculoController@update')->name('inventario.vehiculos.update')
+        ->middleware('permission:invVehiculos.edit');
+    Route::get('inventario/vehiculos/{invVehiculos}','Inventario\InvVehiculoController@show')->name('inventario.vehiculos.show')
+        ->middleware('permission:invVehiculos.show');
+    Route::delete('inventario/vehiculos/{invVehiculos}','Inventario\InvVehiculoController@destroy')->name('inventario.vehiculos.destroy')
+        ->middleware('permission:invVehiculos.destroy');
+    Route::get('inventario/vehiculos/{invVehiculos}/edit','Inventario\InvVehiculoController@edit')->name('inventario.vehiculos.edit')
+        ->middleware('permission:invVehiculos.edit');
 });

@@ -132,16 +132,16 @@
                         <i class="nav-icon fa fa-dashboard"></i>
 
                         <p>
-                            Inventarios
+                            Inventario
                             <i class="right fa fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         @can('monedas.index')
                         <li class="nav-item">
-                            <a href="{{route('parametros.monedas.index')}}" class="nav-link">
+                            <a href="{{route('inventario.vehiculos.index')}}" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Vehículo</p>
+                                <p>Vehículos</p>
                             </a>
                         </li>
                         @endcan
@@ -163,18 +163,6 @@
                             <a href="#" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>Kardex de Vehiculos</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Proveedores</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Inventario inicial</p>
                             </a>
                         </li>
                     </ul>
