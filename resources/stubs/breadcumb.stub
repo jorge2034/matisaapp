@@ -1,0 +1,21 @@
+// escritorio > {{breadcumb}}
+Breadcrumbs::for('{{breadcumb}}', function ($trail) {
+    $trail->parent('escritorio');
+    $trail->push('{{title}}', route('{{ruta}}.index'));
+});
+
+// Escritorio > {{breadcumb}} > [{{breadcumb}}]
+Breadcrumbs::for('{{breadcumb}}.show', function ($trail, ${{variable}}) {
+    $trail->parent('{{breadcumb}}');
+    $trail->push(${{breadcumb}}->nombre, route('{{ruta}}.show', ${{variable}}));
+});
+// Escritorio > {{breadcumb}} > Crear {{breadcumb}}
+Breadcrumbs::for('{{breadcumb}}.create', function ($trail) {
+    $trail->parent('{{breadcumb}}');
+    $trail->push('Crear', route('{{ruta}}.create'));
+});
+// Escritorio > {{breadcumb}} > [{{breadcumb}}]
+Breadcrumbs::for('{{breadcumb}}.edit', function ($trail,${{variable}}) {
+    $trail->parent('{{breadcumb}}');
+    $trail->push('Editar', route('{{ruta}}.edit', ${{variable}}));
+});

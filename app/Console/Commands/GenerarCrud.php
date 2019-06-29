@@ -196,6 +196,58 @@ class GenerarCrud extends Command
         }
     }
 
+    protected function route($name,$title,$permiso,$carpeta,$modulo=null)
+    {
+
+        $routeTemplate = str_replace(
+            [
+                '{{title}}',
+                '{{modulo}}',
+                '{{carpeta}}',
+                '{{modelName}}',
+                '{{permiso}}'
+            ],
+            [
+                $title,
+                $modulo,
+                $carpeta,
+                $name,
+                $permiso
+            ],
+            $this->getStub('route')
+        );
+        file_put_contents(
+            base_path('routes/web.php'),
+            $routeTemplate,
+            FILE_APPEND
+        );
+    }
+
+    protected function breadcumb($title,$variable,$permiso,$variablesingular,$carpeta,$modulo=null)
+    {
+
+        $routeTemplate = str_replace(
+            [
+                '{{breadcumb}}',
+                '{{ruta}}',
+                '{{variable}}'
+            ],
+            [
+                $title,
+                $modulo,
+                $carpeta,
+                $name,
+                $permiso
+            ],
+            $this->getStub('route')
+        );
+        file_put_contents(
+            base_path('routes/web.php'),
+            $routeTemplate,
+            FILE_APPEND
+        );
+    }
+
     /**
      * Execute the console command.
      *
@@ -223,7 +275,8 @@ class GenerarCrud extends Command
         $variablesingular = "alqCasa";//$this->ask('Variable Singular. Ej. invVehiculo');
         $carpetaView = "casas2";//$this->ask('Carpeta views Ej. vehiculos');
         $modulo = "alquiler2";//$this->ask('Modulo Ej. inventario');
-        $this->views($title,$variable,$permiso,$variablesingular,$carpetaView,$modulo);
+        //$this->views($title,$variable,$permiso,$variablesingular,$carpetaView,$modulo);
+        $this->route($name,$title,$permiso,$carpetaView,$modulo);
      //   File::append(base_path('routes/api.php'), 'Route::resource(\'' . str_plural(strtolower($name)) . "', '{$name}Controller');");
     }
 }
