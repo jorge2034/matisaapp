@@ -217,7 +217,7 @@ class GenerarCrud extends Command
         //$this->migration($name,$nameSnakecase);
        // $this->request($name);
        // $this->line('VIEWS');
-        $title = "Casa";// $this->ask('Titulo. Ej. Vehiculo');
+        $title = "Casa";// $this->ask('Titulo. Ej. Vehiculos');
         $variable = "alqCasas";//$this->ask('Variable. Ej. invVehiculos');
         $permiso = "alqcasas";//$this->ask('Permiso. Ej. invvehiculos');
         $variablesingular = "alqCasa";//$this->ask('Variable Singular. Ej. invVehiculo');

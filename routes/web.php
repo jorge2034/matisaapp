@@ -1,24 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
-/*Route::get('admin',function(){
-    return view('admin.dashboard');
-});*/
-
 //Auth::routes();
 /////////////////////////////////////////AUTH ROUTES
 // Authentication Routes...
@@ -34,7 +15,6 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/escritorio', 'HomeController@index')->name('escritorio');
 //Rutas
-Route::middleware('auth')->group(function (){
     //roles
     Route::post('config/roles/store','RoleController@store')->name('config.roles.store')
        ->middleware('permission:roles.create');
@@ -141,4 +121,3 @@ Route::middleware('auth')->group(function (){
         ->middleware('permission:invVehiculos.destroy');
     Route::get('inventario/vehiculos/{invVehiculos}/edit','Inventario\InvVehiculoController@edit')->name('inventario.vehiculos.edit')
         ->middleware('permission:invVehiculos.edit');
-});
