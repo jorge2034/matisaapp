@@ -198,6 +198,10 @@ class GenerarCrud extends Command
 
     protected function route($name,$title,$permiso,$carpeta,$modulo=null)
     {
+        if(isset($modulo))
+            $stub = 'route';
+        else
+            $stub = 'route2';
 
         $routeTemplate = str_replace(
             [
@@ -214,7 +218,7 @@ class GenerarCrud extends Command
                 $name,
                 $permiso
             ],
-            $this->getStub('route')
+            $this->getStub($stub)
         );
         file_put_contents(
             base_path('routes/web.php'),
@@ -223,27 +227,32 @@ class GenerarCrud extends Command
         );
     }
 
-    protected function breadcumb($title,$variable,$permiso,$variablesingular,$carpeta,$modulo=null)
+    protected function breadcumb($title,$variable,$carpeta,$modulo=null)
     {
+        if(isset($modulo)) {
+            $ruta = "{$modulo}.{$carpeta}";
+        }else{
+            $ruta = $carpeta;
+        }
 
-        $routeTemplate = str_replace(
+        $breadcumbTemplate = str_replace(
             [
                 '{{breadcumb}}',
                 '{{ruta}}',
-                '{{variable}}'
+                '{{variable}}',
+                '{{title}}'
             ],
             [
+                $variable,
+                $ruta,
+                $variable,
                 $title,
-                $modulo,
-                $carpeta,
-                $name,
-                $permiso
             ],
-            $this->getStub('route')
+            $this->getStub('breadcumb')
         );
         file_put_contents(
-            base_path('routes/web.php'),
-            $routeTemplate,
+            base_path('routes/breadcrumbs.php'),
+            $breadcumbTemplate,
             FILE_APPEND
         );
     }
@@ -274,9 +283,10 @@ class GenerarCrud extends Command
         $permiso = "alqcasas";//$this->ask('Permiso. Ej. invvehiculos');
         $variablesingular = "alqCasa";//$this->ask('Variable Singular. Ej. invVehiculo');
         $carpetaView = "casas2";//$this->ask('Carpeta views Ej. vehiculos');
-        $modulo = "alquiler2";//$this->ask('Modulo Ej. inventario');
+        $modulo = null;//$this->ask('Modulo Ej. inventario');
         //$this->views($title,$variable,$permiso,$variablesingular,$carpetaView,$modulo);
-        $this->route($name,$title,$permiso,$carpetaView,$modulo);
+       // $this->route($name,$title,$permiso,$carpetaView,$modulo);
+        $this->breadcumb($title,$variable,$carpetaView,$modulo);
      //   File::append(base_path('routes/api.php'), 'Route::resource(\'' . str_plural(strtolower($name)) . "', '{$name}Controller');");
     }
 }

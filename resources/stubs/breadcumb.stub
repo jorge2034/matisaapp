@@ -1,3 +1,5 @@
+
+
 // escritorio > {{breadcumb}}
 Breadcrumbs::for('{{breadcumb}}', function ($trail) {
     $trail->parent('escritorio');

@@ -101,3 +101,4 @@ Breadcrumbs::for('invVehiculos.edit', function ($trail,$invVehiculos) {
     $trail->parent('invVehiculos');
     $trail->push('Editar', route('inventario.vehiculos.edit', $invVehiculos));
 });
+

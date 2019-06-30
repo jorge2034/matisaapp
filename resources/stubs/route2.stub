@@ -1,0 +1,17 @@
+
+
+ //{{modulo}} {{title}}
+    Route::post('{{carpeta}}/store','{{modelName}}Controller@store')->name('{{carpeta}}.store')
+        ->middleware('permission:{{permiso}}.create');
+    Route::get('{{carpeta}}','{{modelName}}Controller@index')->name('{{carpeta}}.index')
+        ->middleware('permission:{{permiso}}.index');
+    Route::get('{{carpeta}}/create','{{modelName}}Controller@create')->name('{{carpeta}}.create')
+        ->middleware('permission:{{permiso}}.create');
+    Route::put('{{carpeta}}/{{{permiso}}}','{{modelName}}Controller@update')->name('{{carpeta}}.update')
+        ->middleware('permission:{{permiso}}.edit');
+    Route::get('{{carpeta}}/{{{permiso}}}','{{modelName}}Controller@show')->name('{{carpeta}}.show')
+        ->middleware('permission:{{permiso}}.show');
+    Route::delete('{{carpeta}}/{{{permiso}}}','{{modelName}}Controller@destroy')->name('{{carpeta}}.destroy')
+        ->middleware('permission:{{permiso}}.destroy');
+    Route::get('{{carpeta}}/{{{permiso}}}/edit','{{modelName}}Controller@edit')->name('{{carpeta}}.edit')
+        ->middleware('permission:{{permiso}}.edit');
