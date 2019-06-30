@@ -20,21 +20,6 @@ class GenerarCrud extends Command
      */
     protected $description = 'Comando generador de crud Matisa Autos';
 
-
-    /**
-     * The views that need to be exported.
-     *
-     * @var array
-     */
-    protected $views = [
-        'auth/login.stub' => 'auth/login.blade.php',
-        'auth/register.stub' => 'auth/register.blade.php',
-        'auth/verify.stub' => 'auth/verify.blade.php',
-        'auth/passwords/email.stub' => 'auth/passwords/email.blade.php',
-        'auth/passwords/reset.stub' => 'auth/passwords/reset.blade.php',
-        'layouts/app.stub' => 'layouts/app.blade.php',
-        'home.stub' => 'home.blade.php',
-    ];
     /**
      * Create a new command instance.
      *
@@ -265,28 +250,27 @@ class GenerarCrud extends Command
     public function handle()
     {
         $name = $this->argument('name');
-     //   $this->line('CONTROLADOR');
-     //   $variable = $this->ask('Variable. Ej. invVehiculos');       //
-     //   $rutaView = $this->ask('Ruta de la vista. Ej. inventario.vehiculos');
-     //   $carpeta = $this->ask('Carpeta. Ej. Inventario');
-     //   $this->line('MIGRACION');
-      //  $nameSnakecase = $this->ask('Tabla migracion. Ej. inv_vehiculos');
-        //  $this->line('Carpeta: '.$carpeta);
+        $this->line('CONTROLADOR');
+        $variable = $this->ask('Variable. Ej. invVehiculos');       //
+        $rutaView = $this->ask('Ruta de la vista. Ej. inventario.vehiculos');
+        $carpeta = $this->ask('Carpeta Controlador. Ej. Inventario');
+        $this->line('MIGRACION');
+        $nameSnakecase = $this->ask('Tabla migracion. Ej. inv_vehiculos');
+        $this->line('Carpeta: '.$carpeta);
         //$name = InvVehiculo, $variable = invVehiculos, $rutaView = inventario.vehiculos , $carpeta = Inventario
-     //   $this->controller($name,$variable,$rutaView,$carpeta);
-     //   $this->model($name);
-        //$this->migration($name,$nameSnakecase);
-       // $this->request($name);
-       // $this->line('VIEWS');
-        $title = "Casa";// $this->ask('Titulo. Ej. Vehiculos');
-        $variable = "alqCasas";//$this->ask('Variable. Ej. invVehiculos');
-        $permiso = "alqcasas";//$this->ask('Permiso. Ej. invvehiculos');
-        $variablesingular = "alqCasa";//$this->ask('Variable Singular. Ej. invVehiculo');
-        $carpetaView = "casas2";//$this->ask('Carpeta views Ej. vehiculos');
-        $modulo = null;//$this->ask('Modulo Ej. inventario');
-        //$this->views($title,$variable,$permiso,$variablesingular,$carpetaView,$modulo);
-       // $this->route($name,$title,$permiso,$carpetaView,$modulo);
+        $this->controller($name,$variable,$rutaView,$carpeta);
+        $this->model($name);
+        $this->migration($name,$nameSnakecase);
+        $this->request($name);
+        $this->line('VIEWS');
+        $title = $this->ask('Titulo. Ej. Vehiculos');
+        $variable = $this->ask('Variable. Ej. invVehiculos');
+        $permiso = $this->ask('Permiso. Ej. invvehiculos');
+        $variablesingular = $this->ask('Variable Singular. Ej. invVehiculo');
+        $carpetaView = $this->ask('Carpeta views Ej. vehiculos');
+        $modulo = $this->ask('Modulo Ej. inventario');
+        $this->views($title,$variable,$permiso,$variablesingular,$carpetaView,$modulo);
+        $this->route($name,$title,$permiso,$carpetaView,$modulo);
         $this->breadcumb($title,$variable,$carpetaView,$modulo);
-     //   File::append(base_path('routes/api.php'), 'Route::resource(\'' . str_plural(strtolower($name)) . "', '{$name}Controller');");
     }
 }
