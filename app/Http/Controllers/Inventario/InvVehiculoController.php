@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventario;
 
 use App\Http\Controllers\Controller;
 
+use App\InvMarca;
 use App\InvVehiculo;
 use Illuminate\Http\Request;
 use App\Http\Requests\InvVehiculoRequest;
@@ -25,8 +26,7 @@ class InvVehiculoController extends Controller
 
         //dd($request);
         $filtro = count($request->toArray())?true:false;
-        $invVehiculos = InvVehiculo::nombre($request->get('nombreF'))
-            ->descripcion($request->get('descripcionF'))
+        $invVehiculos = InvVehiculo::modelo($request->get('modeloF'))
             ->status($request->get('estadoF'))
             ->get();
         return view('inventario.vehiculos.index',['invVehiculos'=>$invVehiculos,'filtro'=>$filtro,'estados'=>$estados]);
@@ -50,6 +50,7 @@ class InvVehiculoController extends Controller
      */
     public function store(InvVehiculoRequest $request)
     {
+
         $invVehiculos = InvVehiculo::create($request->all());
         return redirect()->route('inventario.vehiculos.create',$invVehiculos)
             ->with('info','Vehiculo guardada con exito');

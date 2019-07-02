@@ -39,3 +39,13 @@
     width: 300px;
     height: 300px;
 }
+.chartjs{
+
+}
+.card-ventas{
+
+}
+.ventasescritorio{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}

@@ -13,6 +13,9 @@
 <script src="/adminlte/plugins/jquery-confirm/dist/jquery-confirm.min.js"></script>
 
 <script src="/adminlte/plugins/dropzone/min/dropzone.min.js"></script>
+<script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
+<script src="/adminlte/plugins/summernote/dist/summernote-bs4.min.js"></script>
+<script src="/adminlte/plugins/summernote/dist/lang/summernote-es-ES.min.js"></script>
 @yield('jsporvista')
 @yield('scriptDataTable')
 

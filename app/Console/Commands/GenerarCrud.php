@@ -181,7 +181,7 @@ class GenerarCrud extends Command
         }
     }
 
-    protected function route($name,$title,$permiso,$carpeta,$modulo=null)
+    protected function route($name,$variable,$title,$permiso,$carpeta,$modulo=null)
     {
         if(isset($modulo))
             $stub = 'route';
@@ -194,14 +194,16 @@ class GenerarCrud extends Command
                 '{{modulo}}',
                 '{{carpeta}}',
                 '{{modelName}}',
-                '{{permiso}}'
+                '{{permiso}}',
+                '{{variable}}'
             ],
             [
                 $title,
                 $modulo,
                 $carpeta,
                 $name,
-                $permiso
+                $permiso,
+                $variable
             ],
             $this->getStub($stub)
         );
@@ -249,19 +251,13 @@ class GenerarCrud extends Command
      */
     public function handle()
     {
-        $name = $this->argument('name');
+        $name = $this->argument('name'); //InvVehiculo
         $this->line('CONTROLADOR');
-        $variable = $this->ask('Variable. Ej. invVehiculos');       //
         $rutaView = $this->ask('Ruta de la vista. Ej. inventario.vehiculos');
         $carpeta = $this->ask('Carpeta Controlador. Ej. Inventario');
         $this->line('MIGRACION');
         $nameSnakecase = $this->ask('Tabla migracion. Ej. inv_vehiculos');
         $this->line('Carpeta: '.$carpeta);
-        //$name = InvVehiculo, $variable = invVehiculos, $rutaView = inventario.vehiculos , $carpeta = Inventario
-        $this->controller($name,$variable,$rutaView,$carpeta);
-        $this->model($name);
-        $this->migration($name,$nameSnakecase);
-        $this->request($name);
         $this->line('VIEWS');
         $title = $this->ask('Titulo. Ej. Vehiculos');
         $variable = $this->ask('Variable. Ej. invVehiculos');
@@ -269,8 +265,13 @@ class GenerarCrud extends Command
         $variablesingular = $this->ask('Variable Singular. Ej. invVehiculo');
         $carpetaView = $this->ask('Carpeta views Ej. vehiculos');
         $modulo = $this->ask('Modulo Ej. inventario');
+        //$name = InvVehiculo, $variable = invVehiculos, $rutaView = inventario.vehiculos , $carpeta = Inventario
+        $this->controller($name,$variable,$rutaView,$carpeta);
+        $this->model($name);
+        $this->migration(ucwords($variable),$nameSnakecase);
+        $this->request($name);
         $this->views($title,$variable,$permiso,$variablesingular,$carpetaView,$modulo);
-        $this->route($name,$title,$permiso,$carpetaView,$modulo);
+        $this->route($name,$variable,$title,$permiso,$carpetaView,$modulo);
         $this->breadcumb($title,$variable,$carpetaView,$modulo);
     }
 }

@@ -24,7 +24,7 @@ class InvVehiculoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required',
+            'modelo' => 'required',
 
         ];
     }

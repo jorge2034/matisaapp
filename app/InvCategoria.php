@@ -27,6 +27,19 @@ class InvCategoria extends Model
         );
         return $estado;
     }
+    public static function getArray($bArray = true)
+    {
+        $result = self::where('status',self::ENABLED)->get();
+
+        if($bArray){
+            $array = array();
+            foreach ($result as $value){
+                $array[$value->id] = $value->nombre;
+            }
+            return $array;
+        }
+        return $result;
+    }
     public function scopeNombre($query,$name){
         if(trim($name)!=""){
             $query->where('nombre','LIKE',"%$name%");

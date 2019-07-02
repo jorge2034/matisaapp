@@ -28,3 +28,30 @@
         </a>
     </div>
 @endsection
+@section('jsporvista')
+    <script type="text/javascript">
+        $(function() {
+            $('.summernote').summernote({
+                lang: 'es-ES', // default: 'en-US'
+                placeholder: 'Escribe aqui...',
+                height: 300,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph','height']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video','hr']],
+                    //['view', ['fullscreen','codeview', 'help']],
+                ],
+                popover: {
+                    air: [
+                        ['color', ['color']],
+                        ['font', ['bold', 'underline', 'clear']]
+                    ]
+                }
+            });
+        });
+    </script>
+@endsection

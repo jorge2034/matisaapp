@@ -121,3 +121,20 @@ Route::get('/escritorio', 'HomeController@index')->name('escritorio');
         ->middleware('permission:invVehiculos.destroy');
     Route::get('inventario/vehiculos/{invVehiculos}/edit','Inventario\InvVehiculoController@edit')->name('inventario.vehiculos.edit')
         ->middleware('permission:invVehiculos.edit');
+
+
+ //compras Registro compras con factura
+    Route::post('compras/registroComprasFacturas/store','compras\ComRegistroComprasFacturaController@store')->name('compras.registroComprasFacturas.store')
+        ->middleware('permission:comregistrocomprasfacturas.create');
+    Route::get('compras/registroComprasFacturas','compras\ComRegistroComprasFacturaController@index')->name('compras.registroComprasFacturas.index')
+        ->middleware('permission:comregistrocomprasfacturas.index');
+    Route::get('compras/registroComprasFacturas/create','compras\ComRegistroComprasFacturaController@create')->name('compras.registroComprasFacturas.create')
+        ->middleware('permission:comregistrocomprasfacturas.create');
+    Route::put('compras/registroComprasFacturas/{comRegistroComprasFacturas}','compras\ComRegistroComprasFacturaController@update')->name('compras.registroComprasFacturas.update')
+        ->middleware('permission:comregistrocomprasfacturas.edit');
+    Route::get('compras/registroComprasFacturas/{comRegistroComprasFacturas}','compras\ComRegistroComprasFacturaController@show')->name('compras.registroComprasFacturas.show')
+        ->middleware('permission:comregistrocomprasfacturas.show');
+    Route::delete('compras/registroComprasFacturas/{comRegistroComprasFacturas}','compras\ComRegistroComprasFacturaController@destroy')->name('compras.registroComprasFacturas.destroy')
+        ->middleware('permission:comregistrocomprasfacturas.destroy');
+    Route::get('compras/registroComprasFacturas/{comRegistroComprasFacturas}/edit','compras\ComRegistroComprasFacturaController@edit')->name('compras.registroComprasFacturas.edit')
+        ->middleware('permission:comregistrocomprasfacturas.edit');

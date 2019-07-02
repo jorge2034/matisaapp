@@ -14,8 +14,8 @@
         {!! Form::open(['route'=>'inventario.vehiculos.index','method'=>'GET', 'class'=>'form-inline'])!!}
         <section>
             <div class="inputfilter">
-                <label for="nombreF" class="blockfilter mr-sm-2">Nombre</label>
-                <input type="text" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="nombreF" name="nombreF" value="{{Request()->nombreF}}">
+                <label for="modeloF" class="blockfilter mr-sm-2">Modelo</label>
+                <input type="text" class="blockfilter form-control mb-2 mr-sm-2 mb-sm-0" id="modeloF" name="modeloF" value="{{Request()->modeloF}}">
             </div>
             <div class="inputfilter">
                 <label for="descripcionF" class="blockfilter mr-sm-2">Descripción</label>

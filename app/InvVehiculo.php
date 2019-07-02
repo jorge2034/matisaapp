@@ -12,13 +12,41 @@ class InvVehiculo extends Model
     const ENABLED = 'ENABLED', ENABLED_TXT = 'Activo';
     const DISABLED = 'DISABLED', DISABLED_TXT = 'Inactivo';
     protected $fillable = [
-        'nombre','company_id', 'descripcion',
+        'num_kardex',
+        'modelo',
+        'company_id',
+        'info_extra',
+        'inv_marca_id',
+        'inv_categoria_id',
+        'year',
+        'color',
+        'precio_compra',
+        'precio_venta',
+        'precio_compra_sus',
+        'precio_venta_sus',
+        'num_motor',
+        'num_chasis',
+        'transmision',
+        'cilindrada',
+        'archivo_id',
+        'imagenes',
+        'tipo_combustible',
+        'status'
     ];
 
 
     //RELACIONES
     public function company(){
         return $this->belongsTo('App\Company','company_id');
+    }
+    public function marca(){
+        return $this->belongsTo('App\InvMarca','inv_marca_id');
+    }
+    public function categoria(){
+        return $this->belongsTo('App\InvCategoria','inv_categoria_id');
+    }
+    public function archivos(){
+        return $this->belongsTo('App\Archivo','archivo_id');
     }
     public static function getArrayStatus()
     {
@@ -28,14 +56,9 @@ class InvVehiculo extends Model
         );
         return $estado;
     }
-    public function scopeNombre($query,$name){
+    public function scopeModelo($query,$name){
         if(trim($name)!=""){
-            $query->where('nombre','LIKE',"%$name%");
-        }
-    }
-    public function scopeDescripcion($query,$descripcion){
-        if(trim($descripcion)!=""){
-            $query->where('descripcion','LIKE',"%$descripcion%");
+            $query->where('modelo','LIKE',"%$name%");
         }
     }
     public function scopeStatus($query,$estado){

@@ -167,6 +167,27 @@
                         </li>
                     </ul>
                 </li>
+                {{--modulo compras --}}
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-dashboard"></i>
+
+                        <p>
+                            Compras
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('comregistrocomprasfacturas.index')
+                        <li class="nav-item">
+                            <a href="{{route('compras.registroComprasFacturas.index')}}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Registro Compras<br> con factura</p>
+                            </a>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -7,11 +7,11 @@
         ->middleware('permission:{{permiso}}.index');
     Route::get('{{modulo}}/{{carpeta}}/create','{{modulo}}\{{modelName}}Controller@create')->name('{{modulo}}.{{carpeta}}.create')
         ->middleware('permission:{{permiso}}.create');
-    Route::put('{{modulo}}/{{carpeta}}/{{{permiso}}}','{{modulo}}\{{modelName}}Controller@update')->name('{{modulo}}.{{carpeta}}.update')
+    Route::put('{{modulo}}/{{carpeta}}/{{{variable}}}','{{modulo}}\{{modelName}}Controller@update')->name('{{modulo}}.{{carpeta}}.update')
         ->middleware('permission:{{permiso}}.edit');
-    Route::get('{{modulo}}/{{carpeta}}/{{{permiso}}}','{{modulo}}\{{modelName}}Controller@show')->name('{{modulo}}.{{carpeta}}.show')
+    Route::get('{{modulo}}/{{carpeta}}/{{{variable}}}','{{modulo}}\{{modelName}}Controller@show')->name('{{modulo}}.{{carpeta}}.show')
         ->middleware('permission:{{permiso}}.show');
-    Route::delete('{{modulo}}/{{carpeta}}/{{{permiso}}}','{{modulo}}\{{modelName}}Controller@destroy')->name('{{modulo}}.{{carpeta}}.destroy')
+    Route::delete('{{modulo}}/{{carpeta}}/{{{variable}}}','{{modulo}}\{{modelName}}Controller@destroy')->name('{{modulo}}.{{carpeta}}.destroy')
         ->middleware('permission:{{permiso}}.destroy');
-    Route::get('{{modulo}}/{{carpeta}}/{{{permiso}}}/edit','{{modulo}}\{{modelName}}Controller@edit')->name('{{modulo}}.{{carpeta}}.edit')
+    Route::get('{{modulo}}/{{carpeta}}/{{{variable}}}/edit','{{modulo}}\{{modelName}}Controller@edit')->name('{{modulo}}.{{carpeta}}.edit')
         ->middleware('permission:{{permiso}}.edit');

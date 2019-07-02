@@ -38,7 +38,7 @@
                           @foreach($invVehiculos as $invVehiculo)
                               <tr>
                                   <td>{{++$cont}}</td>
-                                  <td>{{$invVehiculo->nombre}}</td>
+                                  <td>{{$invVehiculo->modelo}}</td>
                                   <td>{{$invVehiculo->descripcion}}</td>
                                   <td class="text-center">{!!estado($invVehiculo->status)!!}</td>
 

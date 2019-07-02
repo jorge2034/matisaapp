@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="card-body">
-                        <p><strong>Nombre: </strong>{{$invVehiculos->nombre}}</p>
+                        <p><strong>Modelo: </strong>{{$invVehiculos->modelo}}</p>
                         <p><strong>Descripcion: </strong>{{$invVehiculos->descripcion}}</p>
                         <p><strong>Estado: </strong>{!! estado($invVehiculos->status)!!}</p>
                     </div>

@@ -102,3 +102,26 @@ Breadcrumbs::for('invVehiculos.edit', function ($trail,$invVehiculos) {
     $trail->push('Editar', route('inventario.vehiculos.edit', $invVehiculos));
 });
 
+
+
+// escritorio > comRegistroComprasFacturas
+Breadcrumbs::for('comRegistroComprasFacturas', function ($trail) {
+    $trail->parent('escritorio');
+    $trail->push('Registro compras con factura', route('compras.registroComprasFacturas.index'));
+});
+
+// Escritorio > comRegistroComprasFacturas > [comRegistroComprasFacturas]
+Breadcrumbs::for('comRegistroComprasFacturas.show', function ($trail, $comRegistroComprasFacturas) {
+    $trail->parent('comRegistroComprasFacturas');
+    $trail->push($comRegistroComprasFacturas->nombre, route('compras.registroComprasFacturas.show', $comRegistroComprasFacturas));
+});
+// Escritorio > comRegistroComprasFacturas > Crear comRegistroComprasFacturas
+Breadcrumbs::for('comRegistroComprasFacturas.create', function ($trail) {
+    $trail->parent('comRegistroComprasFacturas');
+    $trail->push('Crear', route('compras.registroComprasFacturas.create'));
+});
+// Escritorio > comRegistroComprasFacturas > [comRegistroComprasFacturas]
+Breadcrumbs::for('comRegistroComprasFacturas.edit', function ($trail,$comRegistroComprasFacturas) {
+    $trail->parent('comRegistroComprasFacturas');
+    $trail->push('Editar', route('compras.registroComprasFacturas.edit', $comRegistroComprasFacturas));
+});
