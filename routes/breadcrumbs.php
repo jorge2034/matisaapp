@@ -125,3 +125,25 @@ Breadcrumbs::for('comRegistroComprasFacturas.edit', function ($trail,$comRegistr
     $trail->parent('comRegistroComprasFacturas');
     $trail->push('Editar', route('compras.registroComprasFacturas.edit', $comRegistroComprasFacturas));
 });
+
+// escritorio > invAlmacenes
+Breadcrumbs::for('invAlmacenes', function ($trail) {
+    $trail->parent('escritorio');
+    $trail->push('Almacenes', route('inventario.almacenes.index'));
+});
+
+// Escritorio > invAlmacenes > [invAlmacenes]
+Breadcrumbs::for('invAlmacenes.show', function ($trail, $invAlmacenes) {
+    $trail->parent('invAlmacenes');
+    $trail->push($invAlmacenes->nombre, route('inventario.almacenes.show', $invAlmacenes));
+});
+// Escritorio > invAlmacenes > Crear invAlmacenes
+Breadcrumbs::for('invAlmacenes.create', function ($trail) {
+    $trail->parent('invAlmacenes');
+    $trail->push('Crear', route('inventario.almacenes.create'));
+});
+// Escritorio > invAlmacenes > [invAlmacenes]
+Breadcrumbs::for('invAlmacenes.edit', function ($trail,$invAlmacenes) {
+    $trail->parent('invAlmacenes');
+    $trail->push('Editar', route('inventario.almacenes.edit', $invAlmacenes));
+});

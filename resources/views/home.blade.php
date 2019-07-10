@@ -17,9 +17,9 @@
                 <!-- /.card-header -->
                 <div class="card-body" style="display: block;">
 
-                    <div class="ventasescritorio">
-                        <div class="chartjs">
-                            <canvas id="ventas" height="200"></canvas>
+
+                        <div class="chart">
+                            <canvas id="ventas" ></canvas>
                         </div>
                         <div class="widgets">
 
@@ -119,7 +119,7 @@
                                 <!-- /.info-box -->
                             </div>
                         </div>
-                    </div>
+
 
 
                 </div>

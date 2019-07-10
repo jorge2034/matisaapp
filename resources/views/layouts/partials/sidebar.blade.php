@@ -160,9 +160,9 @@
                         </li>
                         @endcan
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('inventario.almacenes.index')}}" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
-                                <p>Kardex de Vehiculos</p>
+                                <p>Almacenes</p>
                             </a>
                         </li>
                     </ul>

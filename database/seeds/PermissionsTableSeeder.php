@@ -21,6 +21,7 @@ class PermissionsTableSeeder extends Seeder
             'invcategorias'=>'categorias(Inventario)',
             'invmarcas' => 'marcas(Inventario)',
             'invvehiculos' => 'vehiculos',
+            'invalmacenes' => 'almacenes',
             'comregistrocomprasfacturas' => 'Registro compras con Factura'
         );
         $this->generarPermisos($permisos);

@@ -138,3 +138,19 @@ Route::get('/escritorio', 'HomeController@index')->name('escritorio');
         ->middleware('permission:comregistrocomprasfacturas.destroy');
     Route::get('compras/registroComprasFacturas/{comRegistroComprasFacturas}/edit','compras\ComRegistroComprasFacturaController@edit')->name('compras.registroComprasFacturas.edit')
         ->middleware('permission:comregistrocomprasfacturas.edit');
+
+ //inventario Almacenes
+    Route::post('inventario/almacenes/store','inventario\InvAlmacenController@store')->name('inventario.almacenes.store')
+        ->middleware('permission:invalmacenes.create');
+    Route::get('inventario/almacenes','inventario\InvAlmacenController@index')->name('inventario.almacenes.index')
+        ->middleware('permission:invalmacenes.index');
+    Route::get('inventario/almacenes/create','inventario\InvAlmacenController@create')->name('inventario.almacenes.create')
+        ->middleware('permission:invalmacenes.create');
+    Route::put('inventario/almacenes/{invAlmacenes}','inventario\InvAlmacenController@update')->name('inventario.almacenes.update')
+        ->middleware('permission:invalmacenes.edit');
+    Route::get('inventario/almacenes/{invAlmacenes}','inventario\InvAlmacenController@show')->name('inventario.almacenes.show')
+        ->middleware('permission:invalmacenes.show');
+    Route::delete('inventario/almacenes/{invAlmacenes}','inventario\InvAlmacenController@destroy')->name('inventario.almacenes.destroy')
+        ->middleware('permission:invalmacenes.destroy');
+    Route::get('inventario/almacenes/{invAlmacenes}/edit','inventario\InvAlmacenController@edit')->name('inventario.almacenes.edit')
+        ->middleware('permission:invalmacenes.edit');

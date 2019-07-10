@@ -5,14 +5,14 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class {{modelName}} extends Model
+class InvAlmacen extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
     const ENABLED = 'ENABLED', ENABLED_TXT = 'Activo';
     const DISABLED = 'DISABLED', DISABLED_TXT = 'Inactivo';
 
-    protected $table = '{{migration_name}}';
+    protected $table = 'inv_almacenes';
 
     protected $fillable = [
         'nombre','company_id', 'descripcion',

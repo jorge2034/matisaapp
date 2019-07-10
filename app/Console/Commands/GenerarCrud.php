@@ -74,11 +74,11 @@ class GenerarCrud extends Command
         file_put_contents(app_path($rutaFinal), $controllerTemplate);
     }
 
-    protected function model($name)
+    protected function model($name,$nameSnakecase)
     {
         $modelTemplate = str_replace(
-            ['{{modelName}}'],
-            [$name],
+            ['{{modelName}}','{{migration_name}}'],
+            [$name,$nameSnakecase],
             $this->getStub('Model')
         );
 
@@ -267,7 +267,7 @@ class GenerarCrud extends Command
         $modulo = $this->ask('Modulo Ej. inventario');
         //$name = InvVehiculo, $variable = invVehiculos, $rutaView = inventario.vehiculos , $carpeta = Inventario
         $this->controller($name,$variable,$rutaView,$carpeta);
-        $this->model($name);
+        $this->model($name,$nameSnakecase);
         $this->migration(ucwords($variable),$nameSnakecase);
         $this->request($name);
         $this->views($title,$variable,$permiso,$variablesingular,$carpetaView,$modulo);
