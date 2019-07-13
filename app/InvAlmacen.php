@@ -15,13 +15,16 @@ class InvAlmacen extends Model
     protected $table = 'inv_almacenes';
 
     protected $fillable = [
-        'nombre','company_id', 'descripcion',
+        'nombre','company_id', 'descripcion','direccion','telefono','city_id',
     ];
 
 
     //RELACIONES
     public function company(){
         return $this->belongsTo('App\Company','company_id');
+    }
+    public function city(){
+        return $this->belongsTo('App\SysCity','city_id');
     }
     public static function getArrayStatus()
     {
