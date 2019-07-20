@@ -7,6 +7,28 @@ Breadcrumbs::for('escritorio', function ($trail) {
     $trail->push('Escritorio', route('escritorio'));
 });
 
+
+// escritorio > users
+Breadcrumbs::for('users', function ($trail) {
+    $trail->parent('escritorio');
+    $trail->push('Usuarios', route('config.users.index'));
+});
+// Escritorio > users > [users]
+Breadcrumbs::for('users.show', function ($trail, $users) {
+    $trail->parent('users');
+    $trail->push($users->name, route('config.users.show', $users));
+});
+// Escritorio > users > Crear users
+Breadcrumbs::for('users.create', function ($trail) {
+    $trail->parent('users');
+    $trail->push('Crear', route('config.users.create'));
+});
+// Escritorio > users > [users]
+Breadcrumbs::for('users.edit', function ($trail,$users) {
+    $trail->parent('users');
+    $trail->push('Editar', route('config.users.edit', $users));
+});
+
 // escritorio > Empresas
 Breadcrumbs::for('empresas', function ($trail) {
     $trail->parent('escritorio');

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\User;
 use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,6 +25,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         $estados = User::getArrayStatus();
         $filtro = count($request->toArray())?true:false;
         $users = User::name($request->get('nameF'))
@@ -39,7 +42,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('empresas.create');
+        $roles = Role::get();
+        return view('users.create',compact('roles'));
     }
     /**
      * Store a newly created resource in storage.
@@ -47,11 +51,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        $empresa = User::create($request->all());
-        return redirect()->route('config.users.create',$empresa)
-            ->with('info','Empresa guardado con exito');
+        $request->request->set('password',Hash::make($request->get('password')));
+        $request->request->add(['fullname'=>'Jorge Ignacio Arce Angelo2']);
+      //  dd($request);
+        $user = User::create($request->all());
+        return redirect()->route('config.users.create',$user)
+            ->with('info','Usuario guardado con exito');
     }
     /**
      * Display the specified resource.

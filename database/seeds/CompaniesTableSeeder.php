@@ -18,5 +18,11 @@ class CompaniesTableSeeder extends Seeder
             'direccion1' => 'CALLE HERRERA #404, ENTRE TARAPACÁ Y TACNA',
             'telefono1'=>'25280630'
         ]);
+        Company::create([
+            'nombre'=>'Matisa Autos Santa Cruz',
+            'descripcion'=>'Matisa Autos Santa Cruz',
+            'direccion1' => 'X',
+            'telefono1'=>'754821464'
+        ]);
     }
 }

@@ -16,7 +16,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('city_id', 'Ciudad', ['class' => 'control-label'] )  !!}
-    {!!  Form::select('city_id', App\SysCity::getArray(),  '-1', ['class' => 'form-control select2' ]) !!}
+    {!!  Form::select('city_id', App\SysCity::getArray(),  null, ['class' => 'form-control select2' ]) !!}
 </div>
 {{Form::hidden('company_id',1)}}
 <div class="form-group">
