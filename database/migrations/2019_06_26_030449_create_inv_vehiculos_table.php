@@ -21,6 +21,7 @@ class CreateInvVehiculosTable extends Migration
             $table->longText('info_extra')->nullable();
             $table->integer('inv_marca_id')->unsigned()->index();
             $table->integer('inv_categoria_id')->unsigned()->index();
+            $table->integer('inv_almacen_id')->unsigned()->index();
             $table->string('year')->nullable();
             $table->string('color')->nullable();
             $table->double('precio_compra', 8, 2)->nullable();
@@ -40,6 +41,7 @@ class CreateInvVehiculosTable extends Migration
             $table->foreign('company_id')->references('id')->on('companies');
             $table->foreign('inv_marca_id')->references('id')->on('inv_marcas');
             $table->foreign('inv_categoria_id')->references('id')->on('inv_categorias');
+            $table->foreign('inv_almacen_id')->references('id')->on('inv_alamcenes');
             $table->foreign('archivo_id')->references('id')->on('archivos');
         });
     }
