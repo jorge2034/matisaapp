@@ -49,6 +49,10 @@ Route::get('/escritorio', 'HomeController@index')->name('escritorio');
     //usuarios
     Route::get('config/users','UserController@index')->name('config.users.index')
         ->middleware('permission:users.index');
+    Route::post('config/users/store','UserController@store')->name('config.users.store')
+        ->middleware('permission:users.create');
+    Route::get('config/users/create','UserController@create')->name('config.users.create')
+        ->middleware('permission:users.create');
     Route::put('config/users/{user}','UserController@update')->name('config.users.update')
         ->middleware('permission:users.edit');
     Route::get('config/users/{user}','UserController@show')->name('config.users.show')
@@ -57,6 +61,7 @@ Route::get('/escritorio', 'HomeController@index')->name('escritorio');
         ->middleware('permission:users.destroy');
     Route::get('config/users/{user}/edit','UserController@edit')->name('config.users.edit')
         ->middleware('permission:users.edit');
+
 
     //Company
     Route::get('config/empresas','EmpresaController@index')->name('config.empresas.index')

@@ -1,20 +1,21 @@
 @extends('layouts.app1')
-@section('title','Usuarios')
+@section('title','Usuario')
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('users.edit',$user) }}
+    {{ Breadcrumbs::render('users.create') }}
 @endsection
 @section('content')
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Usuario
+                    <div class="card-header">Crear Usuario
                     </div>
 
                     <div class="card-body">
-                      {!! Form::model($user,['route'=>['config.users.update',$user->id],'method'=>'PUT']) !!}
+                        @include('layouts.partials.error')
+                        {!! Form::open(['route'=>'config.users.store']) !!}
                         @include('users.partials.form')
-                      {!! Form::close() !!}
+                        {!! Form::close() !!}
 
                     </div>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app1')
 @section('title','Usuarios')
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('empresas') }}
+    {{ Breadcrumbs::render('users') }}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -14,7 +14,7 @@
                     <div class="card-header h5">
                         Resultados
                         @can('users.create')
-                        <a href="{{route('config.empresas.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
+                        <a href="{{route('config.users.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
                         @endcan
                     </div>
 
@@ -40,7 +40,7 @@
                                   <td>{{$user->name}}</td>
                                   <td>{{$user->lastname}}</td>
                                   <td>{{$user->email}}</td>
-                                  <td>{{estado($user->status)}}</td>
+                                  <td class="text-center">{!!estado($user->status)!!}</td>
 
                                   <td width="100px" class="text-center">
                                       <div class="accion">

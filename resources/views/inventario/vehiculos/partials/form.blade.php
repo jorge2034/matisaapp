@@ -8,11 +8,11 @@
 </div>
 <div class="form-group">
     {!! Form::label('inv_marca_id', 'Marca', ['class' => 'control-label'] )  !!}
-    {!!  Form::select('inv_marca_id', App\InvMarca::getArray(),  '3', ['class' => 'form-control' ]) !!}
+    {!!  Form::select('inv_marca_id', App\InvMarca::getArray(),  null, ['class' => 'form-control' ]) !!}
 </div>
 <div class="form-group">
     {!! Form::label('inv_categoria_id', 'Categoria', ['class' => 'control-label'] )  !!}
-    {!!  Form::select('inv_categoria_id', App\InvCategoria::getArray(),  '1', ['class' => 'form-control' ]) !!}
+    {!!  Form::select('inv_categoria_id', App\InvCategoria::getArray(),  null, ['class' => 'form-control' ]) !!}
 
 </div>
 <div class="form-group">
