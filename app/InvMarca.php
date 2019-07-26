@@ -12,7 +12,7 @@ class InvMarca extends Model
     const ENABLED = 'ENABLED', ENABLED_TXT = 'Activo';
     const DISABLED = 'DISABLED', DISABLED_TXT = 'Inactivo';
     protected $fillable = [
-        'nombre','company_id', 'descripcion', 'archivo_id'
+        'nombre','company_id', 'descripcion', 'archivo_id','status'
     ];
 
 
@@ -57,6 +57,11 @@ class InvMarca extends Model
     public function scopeStatus($query,$estado){
         if(trim($estado)!=""){
             $query->where('status','LIKE',"%$estado%");
+        }
+    }
+    public function scopeCompany($query,$company_id){
+        if(trim($company_id)!=""){
+            $query->where('company_id',$company_id);
         }
     }
 }

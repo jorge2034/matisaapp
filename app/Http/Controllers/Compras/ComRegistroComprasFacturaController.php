@@ -23,10 +23,14 @@ class ComRegistroComprasFacturaController extends Controller
     {
         $estados = ComRegistroComprasFactura::getArrayStatus();
         $filtro = count($request->toArray())?true:false;
-        $comRegistroComprasFacturas = ComRegistroComprasFactura::nombre($request->get('nombreF'))
+        //dd($request->all());
+        $comRegistroComprasFacturas = !is_null($request->input('estadoF'))?ComRegistroComprasFactura::status($request->get('estadoF')):ComRegistroComprasFactura::status(ComRegistroComprasFactura::ENABLED);
+        $comRegistroComprasFacturas = $comRegistroComprasFacturas->nombre($request->get('nombreF'))
             ->descripcion($request->get('descripcionF'))
-            ->status($request->get('estadoF'))
+            ->company(\Auth::user()->company_id)
             ->get();
+
+
         return view('compras.registroComprasFacturas.index',['comRegistroComprasFacturas'=>$comRegistroComprasFacturas,'filtro'=>$filtro,'estados'=>$estados]);
     }
 
@@ -48,6 +52,8 @@ class ComRegistroComprasFacturaController extends Controller
      */
     public function store(ComRegistroComprasFacturaRequest $request)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):ComRegistroComprasFactura::DISABLED;
+        $request->request->set('status',$status);
         $comRegistroComprasFacturas = ComRegistroComprasFactura::create($request->all());
         return redirect()->route('compras.registroComprasFacturas.create',$comRegistroComprasFacturas)
             ->with('info','Registro guardado con exito');
@@ -85,6 +91,8 @@ class ComRegistroComprasFacturaController extends Controller
      */
     public function update(ComRegistroComprasFacturaRequest $request, ComRegistroComprasFactura $comRegistroComprasFacturas)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $comRegistroComprasFacturas->update($request->all());
         return redirect()->route('compras.registroComprasFacturas.edit',$comRegistroComprasFacturas->id)
             ->with('info','Registro actualizado con exito');

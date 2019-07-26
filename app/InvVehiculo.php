@@ -66,4 +66,9 @@ class InvVehiculo extends Model
             $query->where('status','LIKE',"%$estado%");
         }
     }
+    public function scopeCompany($query,$company_id){
+        if(trim($company_id)!=""){
+            $query->where('company_id',$company_id);
+        }
+    }
 }

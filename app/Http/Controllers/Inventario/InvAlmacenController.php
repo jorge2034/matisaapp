@@ -50,6 +50,8 @@ class InvAlmacenController extends Controller
      */
     public function store(InvAlmacenRequest $request)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invAlmacenes = InvAlmacen::create($request->all());
         return redirect()->route('inventario.almacenes.create',$invAlmacenes)
             ->with('info','Registro guardado con exito');
@@ -87,6 +89,8 @@ class InvAlmacenController extends Controller
      */
     public function update(InvAlmacenRequest $request, InvAlmacen $invAlmacenes)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invAlmacenes->update($request->all());
         return redirect()->route('inventario.almacenes.edit',$invAlmacenes->id)
             ->with('info','Registro actualizado con exito');

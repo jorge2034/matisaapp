@@ -12,7 +12,7 @@ class Company extends Model
     const ENABLED = 'ENABLED', ENABLED_TXT = 'Activo';
     const DISABLED = 'DISABLED', DISABLED_TXT = 'Inactivo';
     protected $fillable = [
-        'nombre', 'descripcion', 'direccion1','telefono1',
+        'nombre', 'descripcion', 'direccion1','telefono1','status'
     ];
 
     //relaciones

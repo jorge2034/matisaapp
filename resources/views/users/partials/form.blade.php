@@ -19,19 +19,18 @@
     {!!  Form::select('company_id', App\Company::getArray(),  null, ['class' => 'form-control' ]) !!}
 </div>
 <div class="form-group">
-    <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
-    </div>
+    {!! Form::label('status', 'Estado', ['class' => 'control-label'] )  !!}
+    <input type="checkbox" id="status" name="status" class="checkboxstatus" {{isset($user)?$user->status=="ENABLED"?'checked':false:'checked'}}/><label CLASS="toggle" for="status">Toggle</label>
 </div>
+
 <hr>
 <h3>Lista de Roles</h3>
 <div class="form-group">
     <ul class="list-unstyled">
         @foreach($roles as $role)
             <li>
+                {{Form::checkbox('roles[]',$role->id,null)}}
                 <label>
-                    {{Form::checkbox('roles[]',$role->id,null)}}
                     {{$role->name}}
                     <em>({{$role->description??'Sin descripcion'}})</em>
                 </label>

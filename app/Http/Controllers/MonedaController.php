@@ -40,6 +40,8 @@ class MonedaController extends Controller
      */
     public function store(Request $request)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $moneda = Moneda::create($request->all());
         return redirect()->route('parametros.monedas.edit',$moneda->id)
             ->with('info','Producto guardado con exito');
@@ -76,6 +78,8 @@ class MonedaController extends Controller
      */
     public function update(Request $request, Moneda $moneda)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $moneda->update($request->all());
         return redirect()->route('parametros.monedas.edit',$moneda->id)
             ->with('info','Producto actualizado con exito');

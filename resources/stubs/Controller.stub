@@ -47,6 +47,8 @@ class {{modelName}}Controller extends Controller
      */
     public function store({{modelName}}Request $request)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):{{modelName}}::DISABLED;
+        $request->request->set('status',$status);
         ${{variable}} = {{modelName}}::create($request->all());
         return redirect()->route('{{rutaView}}.create',${{variable}})
             ->with('info','Registro guardado con exito');
@@ -84,6 +86,8 @@ class {{modelName}}Controller extends Controller
      */
     public function update({{modelName}}Request $request, {{modelName}} ${{variable}})
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):{{modelName}}::DISABLED;
+        $request->request->set('status',$status);
         ${{variable}}->update($request->all());
         return redirect()->route('{{rutaView}}.edit',${{variable}}->id)
             ->with('info','Registro actualizado con exito');

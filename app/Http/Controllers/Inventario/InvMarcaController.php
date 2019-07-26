@@ -59,6 +59,8 @@ class InvMarcaController extends Controller
         }
         $request->request->add(['archivo_id'=>$imagen->id]);
        // dd($request);
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invmarcas = InvMarca::create($request->all());
         return redirect()->route('inventario.marcas.create',$invmarcas)
             ->with('info','Marca guardada con exito');
@@ -95,6 +97,8 @@ class InvMarcaController extends Controller
      */
     public function update(InvMarcaRequest $request, InvMarca $invmarca)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invmarca->update($request->all());
         return redirect()->route('inventario.marcas.edit',$invmarca->id)
             ->with('info','Marca actualizada con exito');

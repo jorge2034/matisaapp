@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/adminlte/plugins/select2/select2.css">
 {{--<link rel="stylesheet" href="/adminlte/plugins/select2/select2-bootstrap4.min.css">--}}
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/adminlte/plugins/font-awesome/css/font-awesome.min.css">
 <!-- Ionicons -->
 <link rel="stylesheet" href="/css/ionicons.min.css">
 <!-- DataTables -->
@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css">
 <!-- ColorPicker -->
 <link rel="stylesheet" href="/adminlte/plugins/summernote/dist/summernote-bs4.css">
-
 {{--estilo personalizado--}}
 <link rel="stylesheet" href="/css/estilo.css">
 

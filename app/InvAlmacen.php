@@ -15,7 +15,7 @@ class InvAlmacen extends Model
     protected $table = 'inv_almacenes';
 
     protected $fillable = [
-        'nombre','company_id', 'descripcion','direccion','telefono','city_id',
+        'nombre','company_id', 'descripcion','direccion','telefono','city_id','status'
     ];
 
 
@@ -47,6 +47,11 @@ class InvAlmacen extends Model
     public function scopeStatus($query,$estado){
         if(trim($estado)!=""){
             $query->where('status','LIKE',"%$estado%");
+        }
+    }
+    public function scopeCompany($query,$company_id){
+        if(trim($company_id)!=""){
+            $query->where('company_id',$company_id);
         }
     }
 }

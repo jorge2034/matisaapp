@@ -50,7 +50,8 @@ class InvCategoriaController extends Controller
      */
     public function store(InvCategoriaRequest $request)
     {
-
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invcategorias = InvCategoria::create($request->all());
         return redirect()->route('inventario.categorias.create',$invcategorias)
             ->with('info','Categoria guardada con exito');
@@ -87,6 +88,8 @@ class InvCategoriaController extends Controller
      */
     public function update(InvCategoriaRequest $request, InvCategoria $invcategoria)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invcategoria->update($request->all());
         return redirect()->route('inventario.categorias.edit',$invcategoria->id)
             ->with('info','Categoria actualizada con exito');

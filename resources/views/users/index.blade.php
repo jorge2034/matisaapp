@@ -10,7 +10,7 @@
                 {{--Filtros--}}
                 @include('users.partials.filter')
 
-                <div class="card card-primary card-outline">
+                <div class="card card-matisa card-outline">
                     <div class="card-header h5">
                         Resultados
                         @can('users.create')

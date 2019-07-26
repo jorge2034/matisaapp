@@ -49,6 +49,8 @@ class EmpresaController extends Controller
      */
     public function store(EmpresaRequest $request)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $empresa = Company::create($request->all());
         return redirect()->route('config.empresas.create',$empresa)
             ->with('info','Empresa guardado con exito');
@@ -85,6 +87,8 @@ class EmpresaController extends Controller
      */
     public function update(EmpresaRequest $request, Company $empresa)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $empresa->update($request->all());
         return redirect()->route('config.empresas.edit',$empresa->id)
             ->with('info','Empresa actualizado con exito');

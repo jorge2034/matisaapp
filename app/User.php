@@ -41,6 +41,10 @@ class User extends Authenticatable
         'name', 'lastname', 'email','fullname', 'password','company_id','status'
     ];
 
+    //RELACIONES
+    public function company(){
+        return $this->belongsTo('App\Company','company_id');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -86,6 +90,11 @@ class User extends Authenticatable
     public function scopeStatus($query,$estado){
         if(trim($estado)!=""){
             $query->where('status','LIKE',"%$estado%");
+        }
+    }
+    public function scopeCompany($query,$company_id){
+        if(trim($company_id)!=""){
+            $query->where('company_id',$company_id);
         }
     }
 }

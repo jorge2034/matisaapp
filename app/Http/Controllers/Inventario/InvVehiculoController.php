@@ -50,7 +50,8 @@ class InvVehiculoController extends Controller
      */
     public function store(InvVehiculoRequest $request)
     {
-
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invVehiculos = InvVehiculo::create($request->all());
         return redirect()->route('inventario.vehiculos.create',$invVehiculos)
             ->with('info','Vehiculo guardada con exito');
@@ -88,6 +89,8 @@ class InvVehiculoController extends Controller
      */
     public function update(InvVehiculoRequest $request, InvVehiculo $invVehiculos)
     {
+        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $request->request->set('status',$status);
         $invVehiculos->update($request->all());
         return redirect()->route('inventario.vehiculos.edit',$invVehiculos->id)
             ->with('info','Vehiculo actualizado con exito');

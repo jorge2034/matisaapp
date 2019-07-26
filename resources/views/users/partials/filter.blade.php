@@ -1,4 +1,4 @@
-<div class="card card-primary">
+<div class="card card-matisa">
     <div class="card-header">
         <h3 class="card-title">Filtros</h3>
 

@@ -50,3 +50,61 @@
     grid-template-columns: 2fr 1fr;
     height: 200px;
 }
+
+.card-matisa:not(.card-outline) .card-header {
+    background-color: #3C4296;
+    border-bottom: 0;
+}
+.card-matisa.card-outline {
+    border-top: 3px solid #3C4296;
+}
+.card-matisa.card-outline {
+    border-top: 3px solid #3C4296;
+}
+.card-matisa:not(.card-outline) .card-header,
+.card-matisa:not(.card-outline) .card-header a {
+    color: #ffffff;
+}
+
+input[type=checkbox].checkboxstatus {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label.toggle {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 50px;
+    height: 25px;
+    background: grey;
+    display: block;
+    border-radius: 25px;
+    position: relative;
+}
+
+label.toggle:after {
+    content: '';
+    position: absolute;
+    top: 1.25px;
+    left: 1.25px;
+    width: 22.5px;
+    height: 22.5px;
+    background: #fff;
+    border-radius: 22.5px;
+    transition: 0.2s;
+}
+
+input:checked + label.toggle {
+    background: #67c551;
+}
+
+input:checked + label.toggle:after {
+    left: calc(100% - 1.2px);
+    transform: translateX(-100%);
+}
+
+label.toggle:active:after {
+    width: 32.5px;
+}
+
