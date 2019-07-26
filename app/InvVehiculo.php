@@ -18,6 +18,7 @@ class InvVehiculo extends Model
         'info_extra',
         'inv_marca_id',
         'inv_categoria_id',
+        'inv_almacen_id',
         'year',
         'color',
         'precio_compra',
@@ -44,6 +45,9 @@ class InvVehiculo extends Model
     }
     public function categoria(){
         return $this->belongsTo('App\InvCategoria','inv_categoria_id');
+    }
+    public function almacen(){
+        return $this->belongsTo('App\InvAlmacen','inv_almacen_id');
     }
     public function archivos(){
         return $this->belongsTo('App\Archivo','archivo_id');
