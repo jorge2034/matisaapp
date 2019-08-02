@@ -26,6 +26,7 @@
                               <th>Nombre</th>
                               <th>Apellido</th>
                               <th>Email</th>
+                              <th>Sucursal</th>
                               <th>Estado</th>
                               <th>Acción</th>
                           </tr>
@@ -40,6 +41,7 @@
                                   <td>{{$user->name}}</td>
                                   <td>{{$user->lastname}}</td>
                                   <td>{{$user->email}}</td>
+                                  <td>{{$user->company->nombre}}</td>
                                   <td class="text-center">{!!estado($user->status)!!}</td>
 
                                   <td width="100px" class="text-center">
@@ -94,7 +96,7 @@
                 "autoWidth": false,
                 //cambiar orden de columnas segun corresponda para evitar errores
                 "columnDefs": [
-                    { "orderable": false, "targets": [5] }
+                    { "orderable": false, "targets": [6] }
                 ],
                 responsive: {
                     breakpoints: [

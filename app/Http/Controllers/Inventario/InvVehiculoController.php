@@ -28,6 +28,7 @@ class InvVehiculoController extends Controller
         $filtro = count($request->toArray())?true:false;
         $invVehiculos = InvVehiculo::modelo($request->get('modeloF'))
             ->status($request->get('estadoF'))
+            ->company(\Auth::user()->company_id)
             ->get();
         return view('inventario.vehiculos.index',['invVehiculos'=>$invVehiculos,'filtro'=>$filtro,'estados'=>$estados]);
     }
@@ -50,7 +51,7 @@ class InvVehiculoController extends Controller
      */
     public function store(InvVehiculoRequest $request)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvVehiculo::ENABLED:InvVehiculo::DISABLED;
         $request->request->set('status',$status);
         $invVehiculos = InvVehiculo::create($request->all());
         return redirect()->route('inventario.vehiculos.create',$invVehiculos)
@@ -89,7 +90,7 @@ class InvVehiculoController extends Controller
      */
     public function update(InvVehiculoRequest $request, InvVehiculo $invVehiculos)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvVehiculo::ENABLED:InvVehiculo::DISABLED;
         $request->request->set('status',$status);
         $invVehiculos->update($request->all());
         return redirect()->route('inventario.vehiculos.edit',$invVehiculos->id)

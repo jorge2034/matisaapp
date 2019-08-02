@@ -32,6 +32,7 @@ class UserController extends Controller
             ->lastname($request->get('lastnameF'))
             ->email($request->get('emailF'))
             ->status($request->get('estadoF'))
+            ->with('company')
             ->get();
         return view('users.index',['users'=>$users,'filtro'=>$filtro,'estados'=>$estados]);
     }
@@ -53,6 +54,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $status = !is_null($request->input('status'))?User::ENABLED:User::DISABLED;
+        $request->request->set('status',$status);
         $request->request->set('password',Hash::make($request->get('password')));
         $request->request->add(['fullname'=>'Jorge Ignacio Arce Angelo2']);
       //  dd($request);
@@ -92,6 +95,8 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $status = !is_null($request->input('status'))?User::ENABLED:User::DISABLED;
+        $request->request->set('status',$status);
         //actualice el usuario
         $user->update($request->all());
         //actualice los roles

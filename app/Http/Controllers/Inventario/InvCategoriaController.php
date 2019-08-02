@@ -27,6 +27,7 @@ class InvCategoriaController extends Controller
         $invcategorias = InvCategoria::nombre($request->get('nombreF'))
             ->descripcion($request->get('descripcionF'))
             ->status($request->get('estadoF'))
+            ->company(\Auth::user()->company_id)
             ->get();
 
         return view('inventario.categorias.index',['invcategorias'=>$invcategorias,'filtro'=>$filtro,'estados'=>$estados]);
@@ -50,7 +51,7 @@ class InvCategoriaController extends Controller
      */
     public function store(InvCategoriaRequest $request)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvCategoria::ENABLED:InvCategoria::DISABLED;
         $request->request->set('status',$status);
         $invcategorias = InvCategoria::create($request->all());
         return redirect()->route('inventario.categorias.create',$invcategorias)
@@ -88,7 +89,7 @@ class InvCategoriaController extends Controller
      */
     public function update(InvCategoriaRequest $request, InvCategoria $invcategoria)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvCategoria::ENABLED:InvCategoria::DISABLED;
         $request->request->set('status',$status);
         $invcategoria->update($request->all());
         return redirect()->route('inventario.categorias.edit',$invcategoria->id)

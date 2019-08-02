@@ -30,6 +30,7 @@ class InvMarcaController extends Controller
         $invmarcas = InvMarca::nombre($request->get('nombreF'))
             ->descripcion($request->get('descripcionF'))
             ->status($request->get('estadoF'))
+            ->company(\Auth::user()->company_id)
             ->get();
 
         return view('inventario.marcas.index',['invmarcas'=>$invmarcas,'filtro'=>$filtro,'estados'=>$estados]);
@@ -59,7 +60,7 @@ class InvMarcaController extends Controller
         }
         $request->request->add(['archivo_id'=>$imagen->id]);
        // dd($request);
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvMarca::ENABLED:InvMarca::DISABLED;
         $request->request->set('status',$status);
         $invmarcas = InvMarca::create($request->all());
         return redirect()->route('inventario.marcas.create',$invmarcas)
@@ -97,7 +98,7 @@ class InvMarcaController extends Controller
      */
     public function update(InvMarcaRequest $request, InvMarca $invmarca)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvMarca::ENABLED:InvMarca::DISABLED;
         $request->request->set('status',$status);
         $invmarca->update($request->all());
         return redirect()->route('inventario.marcas.edit',$invmarca->id)

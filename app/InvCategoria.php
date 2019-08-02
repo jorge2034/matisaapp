@@ -18,15 +18,6 @@ class InvCategoria extends Model
     public function company(){
         return $this->belongsTo('App\Company','company_id');
     }
-
-    public static function getArrayStatus()
-    {
-        $estado = array(
-            self::ENABLED => self::ENABLED_TXT,
-            self::DISABLED => self::DISABLED_TXT,
-        );
-        return $estado;
-    }
     public static function getArray($bArray = true)
     {
         $result = self::where('status',self::ENABLED)->get();
@@ -39,6 +30,24 @@ class InvCategoria extends Model
             return $array;
         }
         return $result;
+    }
+    public static function getNameForList($object)
+    {
+        if(is_numeric($object)){
+            $object = self::find($object);
+        }
+        if(is_object($object)){
+            return $object->nombre;
+        }
+        return false;
+    }
+    public static function getArrayStatus()
+    {
+        $estado = array(
+            self::ENABLED => self::ENABLED_TXT,
+            self::DISABLED => self::DISABLED_TXT,
+        );
+        return $estado;
     }
     public function scopeNombre($query,$name){
         if(trim($name)!=""){

@@ -42,4 +42,14 @@ class SysCity extends Model
         }
         return $result;
     }
+    public static function getNameForList($object)
+    {
+        if(is_numeric($object)){
+            $object = self::find($object);
+        }
+        if(is_object($object)){
+            return $object->nombre;
+        }
+        return false;
+    }
 }

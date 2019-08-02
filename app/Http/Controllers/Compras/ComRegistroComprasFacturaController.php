@@ -52,7 +52,7 @@ class ComRegistroComprasFacturaController extends Controller
      */
     public function store(ComRegistroComprasFacturaRequest $request)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):ComRegistroComprasFactura::DISABLED;
+        $status = !is_null($request->input('status'))?ComRegistroComprasFactura::ENABLED:ComRegistroComprasFactura::DISABLED;
         $request->request->set('status',$status);
         $comRegistroComprasFacturas = ComRegistroComprasFactura::create($request->all());
         return redirect()->route('compras.registroComprasFacturas.create',$comRegistroComprasFacturas)
@@ -91,7 +91,7 @@ class ComRegistroComprasFacturaController extends Controller
      */
     public function update(ComRegistroComprasFacturaRequest $request, ComRegistroComprasFactura $comRegistroComprasFacturas)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?ComRegistroComprasFactura::ENABLED:ComRegistroComprasFactura::DISABLED;
         $request->request->set('status',$status);
         $comRegistroComprasFacturas->update($request->all());
         return redirect()->route('compras.registroComprasFacturas.edit',$comRegistroComprasFacturas->id)

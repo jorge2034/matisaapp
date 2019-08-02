@@ -28,6 +28,7 @@ class InvAlmacenController extends Controller
         $invAlmacenes = InvAlmacen::nombre($request->get('nombreF'))
             ->descripcion($request->get('descripcionF'))
             ->status($request->get('estadoF'))
+            ->company(\Auth::user()->company_id)
             ->get();
         return view('inventario.almacenes.index',['invAlmacenes'=>$invAlmacenes,'filtro'=>$filtro,'estados'=>$estados]);
     }
@@ -50,7 +51,7 @@ class InvAlmacenController extends Controller
      */
     public function store(InvAlmacenRequest $request)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvAlmacen::ENABLED:InvAlmacen::DISABLED;
         $request->request->set('status',$status);
         $invAlmacenes = InvAlmacen::create($request->all());
         return redirect()->route('inventario.almacenes.create',$invAlmacenes)
@@ -89,7 +90,7 @@ class InvAlmacenController extends Controller
      */
     public function update(InvAlmacenRequest $request, InvAlmacen $invAlmacenes)
     {
-        $status = !is_null($request->input('status'))?$request->input('status'):"DISABLED";
+        $status = !is_null($request->input('status'))?InvAlmacen::ENABLED:InvAlmacen::DISABLED;
         $request->request->set('status',$status);
         $invAlmacenes->update($request->all());
         return redirect()->route('inventario.almacenes.edit',$invAlmacenes->id)
