@@ -81,7 +81,10 @@
 @section('scriptDataTable')
     <script>
         $(function() {
-            $('.select2').select2();
+
+            $('.select2').select2({
+                placeholder: "Seleccione"
+            });
             $('#tabla').DataTable({
                 "language": {
                     "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"

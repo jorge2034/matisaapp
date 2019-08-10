@@ -32,6 +32,7 @@ class UserController extends Controller
             ->lastname($request->get('lastnameF'))
             ->email($request->get('emailF'))
             ->status($request->get('estadoF'))
+            ->company($request->get('sucursalF'))
             ->with('company')
             ->get();
         return view('users.index',['users'=>$users,'filtro'=>$filtro,'estados'=>$estados]);
