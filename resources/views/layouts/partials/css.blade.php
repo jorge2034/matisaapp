@@ -12,7 +12,7 @@
 {{--<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">--}}
 <link rel="stylesheet" href="/adminlte/plugins/jquery-confirm/dist/jquery-confirm.min.css">
 
-<link rel="stylesheet" href="/adminlte/plugins/dropzone/min/dropzone.min.css">
+<link rel="stylesheet" href="/adminlte/plugins/dropzone/dropzone.css">
 
 <!-- ColorPicker -->
 <link rel="stylesheet" href="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css">
@@ -20,5 +20,6 @@
 <link rel="stylesheet" href="/adminlte/plugins/summernote/dist/summernote-bs4.css">
 {{--estilo personalizado--}}
 <link rel="stylesheet" href="/css/estilo.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css">
 
 

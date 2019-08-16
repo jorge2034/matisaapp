@@ -12,7 +12,8 @@
 <script src="/adminlte/plugins/select2/select2.full.min.js"></script>
 <script src="/adminlte/plugins/jquery-confirm/dist/jquery-confirm.min.js"></script>
 
-<script src="/adminlte/plugins/dropzone/min/dropzone.min.js"></script>
+{{--<script src="/adminlte/plugins/dropzone/dropzone.js"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
 <script src="/adminlte/plugins/popper/umd/popper.min.js"></script>
 <script src="/adminlte/plugins/summernote/dist/summernote-bs4.min.js"></script>
 <script src="/adminlte/plugins/summernote/dist/lang/summernote-es-ES.min.js"></script>

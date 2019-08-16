@@ -16,7 +16,6 @@
                         {!! Form::open(['route'=>'inventario.vehiculos.store', 'method' => 'POST']) !!}
                         @include('inventario.vehiculos.partials.form')
                         {!! Form::close() !!}
-
                     </div>
 
                 </div>
@@ -30,6 +29,7 @@
 @section('jsporvista')
     <script type="text/javascript">
         $(function() {
+            $(".select2").select2();
             $('.summernote').summernote({
                 lang: 'es-ES', // default: 'en-US'
                 placeholder: 'Escribe aqui...',
@@ -52,5 +52,6 @@
                 }
             });
         });
+
     </script>
 @endsection
