@@ -160,5 +160,5 @@ Route::get('/escritorio', 'HomeController@index')->name('escritorio');
     Route::get('inventario/almacenes/{invAlmacenes}/edit','inventario\InvAlmacenController@edit')->name('inventario.almacenes.edit')
         ->middleware('permission:invalmacenes.edit');
 
-Route::post('file','ArchivoController@store')->name('file.store')
+Route::post('/file/dropzone','ArchivoController@dropzone')->name('dropzone')
     ->middleware('permission:invalmacenes.create');

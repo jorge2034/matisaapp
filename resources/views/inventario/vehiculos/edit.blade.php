@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                       @include('layouts.partials.error')
-                      {!! Form::model($invVehiculos,['route'=>['inventario.vehiculos.update',$invVehiculos->id],'method'=>'PUT']) !!}
+                      {!! Form::model($invVehiculos,['route'=>['inventario.vehiculos.update',$invVehiculos->id],'files'=>true,'method'=>'PUT']) !!}
                         @include('inventario.vehiculos.partials.form')
                       {!! Form::close() !!}
 

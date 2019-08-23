@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Inventario;
 
+use App\Archivo;
 use App\Http\Controllers\Controller;
 
 use App\InvMarca;
@@ -51,8 +52,13 @@ class InvVehiculoController extends Controller
      */
     public function store(InvVehiculoRequest $request)
     {
+        if(!is_null($request->file('images'))){
+            $arrayIds = Archivo::uploadMultipleFile($request->file('images'));
+            $request->request->set('imagenes',json_encode($arrayIds));
+        }
         $status = !is_null($request->input('status'))?InvVehiculo::ENABLED:InvVehiculo::DISABLED;
         $request->request->set('status',$status);
+       // dd($request);
         $invVehiculos = InvVehiculo::create($request->all());
         return redirect()->route('inventario.vehiculos.create',$invVehiculos)
             ->with('info','Vehiculo guardada con exito');
@@ -90,6 +96,11 @@ class InvVehiculoController extends Controller
      */
     public function update(InvVehiculoRequest $request, InvVehiculo $invVehiculos)
     {
+        if(!is_null($request->file('images'))){
+            $arrayIds = Archivo::uploadMultipleFile($request->file('images'));
+            $arrayIds = array_merge(json_decode($invVehiculos->imagenes),$arrayIds);
+            $request->request->set('imagenes',json_encode($arrayIds));
+        }
         $status = !is_null($request->input('status'))?InvVehiculo::ENABLED:InvVehiculo::DISABLED;
         $request->request->set('status',$status);
         $invVehiculos->update($request->all());

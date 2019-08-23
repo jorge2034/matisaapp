@@ -13,7 +13,7 @@
 
                     <div class="card-body">
                         @include('layouts.partials.error')
-                        {!! Form::open(['route'=>'inventario.vehiculos.store', 'method' => 'POST']) !!}
+                        {!! Form::open(['route'=>'inventario.vehiculos.store', 'files'=>true,'method' => 'POST']) !!}
                         @include('inventario.vehiculos.partials.form')
                         {!! Form::close() !!}
                     </div>
@@ -28,6 +28,7 @@
 @endsection
 @section('jsporvista')
     <script type="text/javascript">
+
         $(function() {
             $(".select2").select2();
             $('.summernote').summernote({
@@ -52,6 +53,5 @@
                 }
             });
         });
-
     </script>
 @endsection
