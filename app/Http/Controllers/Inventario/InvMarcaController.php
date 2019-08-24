@@ -57,8 +57,9 @@ class InvMarcaController extends Controller
         if($request->hasFile('srcimage')){
             $path = $request->srcimage->store('public');
             $imagen= Archivo::create(['company_id'=>1,'nombre'=>$path,'ruta'=>$path]);
+            $request->request->add(['archivo_id'=>$imagen->id]);
         }
-        $request->request->add(['archivo_id'=>$imagen->id]);
+
        // dd($request);
         $status = !is_null($request->input('status'))?InvMarca::ENABLED:InvMarca::DISABLED;
         $request->request->set('status',$status);
