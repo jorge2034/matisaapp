@@ -169,3 +169,47 @@ Breadcrumbs::for('invAlmacenes.edit', function ($trail,$invAlmacenes) {
     $trail->parent('invAlmacenes');
     $trail->push('Editar', route('inventario.almacenes.edit', $invAlmacenes));
 });
+
+// escritorio > invInventarios
+Breadcrumbs::for('invInventarios', function ($trail) {
+    $trail->parent('escritorio');
+    $trail->push('Inventario', route('inventario.inventarios.index'));
+});
+
+// Escritorio > invInventarios > [invInventarios]
+Breadcrumbs::for('invInventarios.show', function ($trail, $invInventarios) {
+    $trail->parent('invInventarios');
+    $trail->push($invInventarios->vehiculo->modelo, route('inventario.inventarios.show', $invInventarios));
+});
+// Escritorio > invInventarios > Crear invInventarios
+Breadcrumbs::for('invInventarios.create', function ($trail) {
+    $trail->parent('invInventarios');
+    $trail->push('Crear', route('inventario.inventarios.create'));
+});
+// Escritorio > invInventarios > [invInventarios]
+Breadcrumbs::for('invInventarios.edit', function ($trail,$invInventarios) {
+    $trail->parent('invInventarios');
+    $trail->push('Editar', route('inventario.inventarios.edit', $invInventarios));
+});
+
+// escritorio > invColores
+Breadcrumbs::for('invColores', function ($trail) {
+    $trail->parent('escritorio');
+    $trail->push('Colores', route('inventario.colores.index'));
+});
+
+// Escritorio > invColores > [invColores]
+Breadcrumbs::for('invColores.show', function ($trail, $invColores) {
+    $trail->parent('invColores');
+    $trail->push($invColores->nombre, route('inventario.colores.show', $invColores));
+});
+// Escritorio > invColores > Crear invColores
+Breadcrumbs::for('invColores.create', function ($trail) {
+    $trail->parent('invColores');
+    $trail->push('Crear', route('inventario.colores.create'));
+});
+// Escritorio > invColores > [invColores]
+Breadcrumbs::for('invColores.edit', function ($trail,$invColores) {
+    $trail->parent('invColores');
+    $trail->push('Editar', route('inventario.colores.edit', $invColores));
+});

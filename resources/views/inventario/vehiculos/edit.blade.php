@@ -31,6 +31,7 @@
 @section('jsporvista')
     <script type="text/javascript">
         $(function() {
+            $(".select2").select2();
             $('.summernote').summernote({
                 lang: 'es-ES', // default: 'en-US'
                 placeholder: 'Escribe aqui...',

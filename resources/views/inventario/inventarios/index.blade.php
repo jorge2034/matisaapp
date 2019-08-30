@@ -1,7 +1,7 @@
 @extends('layouts.app1')
-@section('title','Marcas - Inventario')
+@section('title','Inventario')
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('invmarcas') }}
+    {{ Breadcrumbs::render('invInventarios') }}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -9,13 +9,13 @@
             <div class="col-md-12">
 
                 {{--Filtros--}}
-               @include('inventario.marcas.partials.filter')
+               @include('inventario.inventarios.partials.filter')
 
                 <div class="card card-primary card-outline">
                     <div class="card-header h5">
                         Resultados
-                        @can('invmarcas.create')
-                        <a href="{{route('inventario.marcas.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
+                        @can('invinventarios.create')
+                        <a href="{{route('inventario.inventarios.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
                         @endcan
                     </div>
 
@@ -25,9 +25,10 @@
                           <thead>
                           <tr>
                               <th>Nº</th>
-                              <th>Nombre</th>
-                              <th>Descripción</th>
-                              <th>Imagen</th>
+                              <th>Vehiculo</th>
+                              <th>Marca</th>
+                              <th>Cantidad</th>
+                              <th>Año</th>
                               <th>Estado</th>
                               <th>Acción</th>
                           </tr>
@@ -36,37 +37,31 @@
                           @php
                           $cont = 0;
                           @endphp
-                          @foreach($invmarcas as $invmarca)
+                          @foreach($invInventarios as $invInventario)
                               <tr>
                                   <td>{{++$cont}}</td>
-                                  <td>{{$invmarca->nombre}}</td>
-                                  <td>{{$invmarca->descripcion}}</td>
-                                  <td>
-                                      <div class="text-center">
-                                          @php
-                                          $imagen = is_object($invmarca->archivos)?$invmarca->archivos->url_path:"";
-                                          @endphp
-                                      <img class="rounded  img-thumbnail img-table-custom" src="{{$imagen}}" alt="">
-                                      </div>
-                                  </td>
-                                  <td class="text-center">{!!estado($invmarca->status)!!}</td>
+                                  <td>{{$invInventario->vehiculo->modelo}}</td>
+                                  <td>{{$invInventario->vehiculo->marca->nombre}}</td>
+                                  <td>{{$invInventario->cantidad}}</td>
+                                  <td>{{$invInventario->year}}</td>
+                                  <td class="text-center">{!!estado($invInventario->status)!!}</td>
 
                                   <td width="100px" class="text-center">
                                       <div class="accion">
-                                              @can('invmarcas.show')
-                                              <a href="{{route('inventario.marcas.show',$invmarca)}}"
+                                              @can('invinventarios.show')
+                                              <a href="{{route('inventario.inventarios.show',$invInventario)}}"
                                                  title="Ver" class="btn btn-sm  btn-accion">
                                                   <i class="fa fa-eye"></i>
                                               </a>
                                               @endcan
-                                              @can('invmarcas.edit')
-                                              <a href="{{route('inventario.marcas.edit',$invmarca->id)}}"
+                                              @can('invinventarios.edit')
+                                              <a href="{{route('inventario.inventarios.edit',$invInventario->id)}}"
                                                  title="Modificar" class="btn btn-sm  btn-accion">
                                                   <i class="fa fa-edit"></i>
                                               </a>
                                               @endcan
-                                              @can('invmarcas.destroy')
-                                              <a href="#" onclick="borrar({{$invmarca->id}})" title="Eliminar" class="btn btn-sm btn-borrar btn-accion">
+                                              @can('invinventarios.destroy')
+                                              <a href="#" onclick="borrar({{$invInventario->id}})" title="Eliminar" class="btn btn-sm btn-borrar btn-accion">
                                                   <i class="fa fa-trash-o"></i>
                                               </a>
                                               @endcan
@@ -77,7 +72,6 @@
                           </tbody>
                       </table>
                             </div>
-                        {{--{{$empresas->render()}}--}}
                     </div>
                 </div>
             </div>
@@ -104,7 +98,7 @@
                 "autoWidth": false,
                 //cambiar orden de columnas segun corresponda para evitar errores
                 "columnDefs": [
-                    { "orderable": false, "targets": [5] }
+                    { "orderable": false, "targets": [6] }
                 ],
                 responsive: {
                     breakpoints: [
@@ -133,7 +127,7 @@
                         var token = $("meta[name='csrf-token']").attr("content");
                         $.ajax(
                                 {
-                                    url: "marcas/"+ide,
+                                    url: "inventarios/"+ide,
                                     type: 'DELETE',
                                     data: {
                                         "id": ide,

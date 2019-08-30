@@ -145,6 +145,14 @@
                             </a>
                         </li>
                         @endcan
+                        @can('invinventarios.index')
+                        <li class="nav-item">
+                            <a href="{{route('inventario.inventarios.index')}}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Inventario</p>
+                            </a>
+                        </li>
+                        @endcan
                         <li class="nav-item">
                             <a href="{{route('inventario.categorias.index')}}" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
@@ -156,6 +164,14 @@
                             <a href="{{route('inventario.marcas.index')}}" class="nav-link">
                                 <i class="fa fa-circle-o nav-icon"></i>
                                 <p>Marcas</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('invcolores.index')
+                        <li class="nav-item">
+                            <a href="{{route('inventario.colores.index')}}" class="nav-link">
+                                <i class="fa fa-circle-o nav-icon"></i>
+                                <p>Colores</p>
                             </a>
                         </li>
                         @endcan

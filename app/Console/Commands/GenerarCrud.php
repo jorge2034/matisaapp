@@ -18,7 +18,7 @@ class GenerarCrud extends Command
      *
      * @var string
      */
-    protected $description = 'Comando generador de crud Matisa Autos';
+    protected $description = 'Comando generador de crud Matisa Autos eje: php artisan generar:crud InvVehiculo';
 
     /**
      * Create a new command instance.

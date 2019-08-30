@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInvMarcasTable extends Migration
+class CreateInvColoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateInvMarcasTable extends Migration
      */
     public function up()
     {
-        Schema::create('inv_marcas', function (Blueprint $table) {
+        Schema::create('inv_colores', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id')->unsigned()->index();
-            $table->foreign('company_id')->references('id')->on('companies');
             $table->string('nombre');
             $table->string('descripcion')->nullable();
-            $table->integer('archivo_id')->nullable()->unsigned();
-            $table->foreign('archivo_id')->references('id')->on('archivos');
             $table->string('status')->default('ENABLED');
             $table->softDeletes();
             $table->timestamps();
@@ -34,6 +30,6 @@ class CreateInvMarcasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inv_marcas');
+        Schema::dropIfExists('inv_colores');
     }
 }

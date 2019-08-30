@@ -18,15 +18,6 @@ class InvVehiculo extends Model
         'info_extra',
         'inv_marca_id',
         'inv_categoria_id',
-        'inv_almacen_id',
-        'year',
-        'color',
-        'precio_compra',
-        'precio_venta',
-        'precio_compra_sus',
-        'precio_venta_sus',
-        'num_motor',
-        'num_chasis',
         'transmision',
         'cilindrada',
         'archivo_id',
@@ -46,20 +37,17 @@ class InvVehiculo extends Model
     public function categoria(){
         return $this->belongsTo('App\InvCategoria','inv_categoria_id');
     }
-    public function almacen(){
-        return $this->belongsTo('App\InvAlmacen','inv_almacen_id');
-    }
     public function archivos(){
         return $this->belongsTo('App\Archivo','archivo_id');
     }
     public static function getArray($bArray = true)
     {
-        $result = self::where('status',self::ENABLED)->get();
+        $result = self::where('status',self::ENABLED)->with('marca')->get();
 
         if($bArray){
             $array = array();
             foreach ($result as $value){
-                $array[$value->id] = $value->modelo;
+                $array[$value->id] = $value->modelo." (".strtoupper($value->marca->nombre).")";
             }
             return $array;
         }

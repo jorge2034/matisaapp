@@ -162,3 +162,35 @@ Route::get('/escritorio', 'HomeController@index')->name('escritorio');
 
 Route::post('/file/dropzone','ArchivoController@dropzone')->name('dropzone')
     ->middleware('permission:invalmacenes.create');
+
+ //inventario Inventario
+    Route::post('inventario/inventarios/store','inventario\InvInventarioController@store')->name('inventario.inventarios.store')
+        ->middleware('permission:invinventarios.create');
+    Route::get('inventario/inventarios','inventario\InvInventarioController@index')->name('inventario.inventarios.index')
+        ->middleware('permission:invinventarios.index');
+    Route::get('inventario/inventarios/create','inventario\InvInventarioController@create')->name('inventario.inventarios.create')
+        ->middleware('permission:invinventarios.create');
+    Route::put('inventario/inventarios/{invInventarios}','inventario\InvInventarioController@update')->name('inventario.inventarios.update')
+        ->middleware('permission:invinventarios.edit');
+    Route::get('inventario/inventarios/{invInventarios}','inventario\InvInventarioController@show')->name('inventario.inventarios.show')
+        ->middleware('permission:invinventarios.show');
+    Route::delete('inventario/inventarios/{invInventarios}','inventario\InvInventarioController@destroy')->name('inventario.inventarios.destroy')
+        ->middleware('permission:invinventarios.destroy');
+    Route::get('inventario/inventarios/{invInventarios}/edit','inventario\InvInventarioController@edit')->name('inventario.inventarios.edit')
+        ->middleware('permission:invinventarios.edit');
+
+ //inventario Colores
+    Route::post('inventario/colores/store','inventario\InvColorController@store')->name('inventario.colores.store')
+        ->middleware('permission:invcolores.create');
+    Route::get('inventario/colores','inventario\InvColorController@index')->name('inventario.colores.index')
+        ->middleware('permission:invcolores.index');
+    Route::get('inventario/colores/create','inventario\InvColorController@create')->name('inventario.colores.create')
+        ->middleware('permission:invcolores.create');
+    Route::put('inventario/colores/{invColores}','inventario\InvColorController@update')->name('inventario.colores.update')
+        ->middleware('permission:invcolores.edit');
+    Route::get('inventario/colores/{invColores}','inventario\InvColorController@show')->name('inventario.colores.show')
+        ->middleware('permission:invcolores.show');
+    Route::delete('inventario/colores/{invColores}','inventario\InvColorController@destroy')->name('inventario.colores.destroy')
+        ->middleware('permission:invcolores.destroy');
+    Route::get('inventario/colores/{invColores}/edit','inventario\InvColorController@edit')->name('inventario.colores.edit')
+        ->middleware('permission:invcolores.edit');

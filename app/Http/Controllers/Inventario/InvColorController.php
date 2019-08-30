@@ -1,12 +1,15 @@
 <?php
 
-{{namespace}}
 
-use App\{{modelName}};
+            namespace App\Http\Controllers\Inventario;
+            use App\Http\Controllers\Controller;
+            
+
+use App\InvColor;
 use Illuminate\Http\Request;
-use App\Http\Requests\{{modelName}}Request;
+use App\Http\Requests\InvColorRequest;
 
-class {{modelName}}Controller extends Controller
+class InvColorController extends Controller
 {
 
     public function __construct()
@@ -20,13 +23,13 @@ class {{modelName}}Controller extends Controller
      */
     public function index(Request $request)
     {
-        $estados = {{modelName}}::getArrayStatus();
+        $estados = InvColor::getArrayStatus();
         $filtro = count($request->toArray())?true:false;
-        ${{variable}} = {{modelName}}::nombre($request->get('nombreF'))
+        $invColores = InvColor::nombre($request->get('nombreF'))
             ->descripcion($request->get('descripcionF'))
             ->status($request->get('estadoF'))
             ->get();
-        return view('{{rutaView}}.index',['{{variable}}'=>${{variable}},'filtro'=>$filtro,'estados'=>$estados]);
+        return view('inventario.colores.index',['invColores'=>$invColores,'filtro'=>$filtro,'estados'=>$estados]);
     }
 
     /**
@@ -36,7 +39,7 @@ class {{modelName}}Controller extends Controller
      */
     public function create()
     {
-        return view('{{rutaView}}.create');
+        return view('inventario.colores.create');
     }
 
     /**
@@ -45,64 +48,64 @@ class {{modelName}}Controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store({{modelName}}Request $request)
+    public function store(InvColorRequest $request)
     {
-        $status = !is_null($request->input('status'))?{{modelName}}::ENABLED:{{modelName}}::DISABLED;
+        $status = !is_null($request->input('status'))?InvColor::ENABLED:InvColor::DISABLED;
         $request->request->set('status',$status);
-        ${{variable}} = {{modelName}}::create($request->all());
-        return redirect()->route('{{rutaView}}.create',${{variable}})
+        $invColores = InvColor::create($request->all());
+        return redirect()->route('inventario.colores.create',$invColores)
             ->with('info','Registro guardado con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\{{modelName}}  ${{variable}}
+     * @param  \App\InvColor  $invColores
      * @return \Illuminate\Http\Response
      */
-    public function show({{modelName}} ${{variable}})
+    public function show(InvColor $invColores)
     {
-       // dd(${{variable}});
-        return view('{{rutaView}}.show',compact('{{variable}}'));
+       // dd($invColores);
+        return view('inventario.colores.show',compact('invColores'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\{{modelName}}  ${{variable}}
+     * @param  \App\InvColor  $invColores
      * @return \Illuminate\Http\Response
      */
-    public function edit({{modelName}} ${{variable}})
+    public function edit(InvColor $invColores)
     {
-        return view('{{rutaView}}.edit',compact('{{variable}}'));
+        return view('inventario.colores.edit',compact('invColores'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\{{modelName}}  ${{variable}}
+     * @param  \App\InvColor  $invColores
      * @return \Illuminate\Http\Response
      */
-    public function update({{modelName}}Request $request, {{modelName}} ${{variable}})
+    public function update(InvColorRequest $request, InvColor $invColores)
     {
-        $status = !is_null($request->input('status'))?{{modelName}}::ENABLED:{{modelName}}::DISABLED;
+        $status = !is_null($request->input('status'))?InvColor::ENABLED:InvColor::DISABLED;
         $request->request->set('status',$status);
-        ${{variable}}->update($request->all());
-        return redirect()->route('{{rutaView}}.edit',${{variable}}->id)
+        $invColores->update($request->all());
+        return redirect()->route('inventario.colores.edit',$invColores->id)
             ->with('info','Registro actualizado con exito');
     }
 
     /**
  * Remove the specified resource from storage.
  *
- * @param  \App\{{modelName}}  ${{variable}}
+ * @param  \App\InvColor  $invColores
  * @return \Illuminate\Http\Response
  */
     public function destroy($id)
     {
-        ${{variable}} = {{modelName}}::find($id);
-        ${{variable}}->delete();
+        $invColores = InvColor::find($id);
+        $invColores->delete();
         return response()->json([
             'success' => 'Registro eliminado exitosamente!'
         ]);

@@ -29,7 +29,6 @@ class InvVehiculoController extends Controller
         $filtro = count($request->toArray())?true:false;
         $invVehiculos = InvVehiculo::modelo($request->get('modeloF'))
             ->status($request->get('estadoF'))
-            ->company(\Auth::user()->company_id)
             ->get();
         return view('inventario.vehiculos.index',['invVehiculos'=>$invVehiculos,'filtro'=>$filtro,'estados'=>$estados]);
     }

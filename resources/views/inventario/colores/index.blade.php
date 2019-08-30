@@ -1,7 +1,7 @@
 @extends('layouts.app1')
-@section('title','Marcas - Inventario')
+@section('title','Colores')
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('invmarcas') }}
+    {{ Breadcrumbs::render('invColores') }}
 @endsection
 @section('content')
     <div class="container-fluid">
@@ -9,13 +9,13 @@
             <div class="col-md-12">
 
                 {{--Filtros--}}
-               @include('inventario.marcas.partials.filter')
+               @include('inventario.colores.partials.filter')
 
                 <div class="card card-primary card-outline">
                     <div class="card-header h5">
                         Resultados
-                        @can('invmarcas.create')
-                        <a href="{{route('inventario.marcas.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
+                        @can('invcolores.create')
+                        <a href="{{route('inventario.colores.create')}}" class="btn btn-primary btn-sm pull-right">Crear</a>
                         @endcan
                     </div>
 
@@ -27,7 +27,6 @@
                               <th>Nº</th>
                               <th>Nombre</th>
                               <th>Descripción</th>
-                              <th>Imagen</th>
                               <th>Estado</th>
                               <th>Acción</th>
                           </tr>
@@ -36,37 +35,29 @@
                           @php
                           $cont = 0;
                           @endphp
-                          @foreach($invmarcas as $invmarca)
+                          @foreach($invColores as $invColor)
                               <tr>
                                   <td>{{++$cont}}</td>
-                                  <td>{{$invmarca->nombre}}</td>
-                                  <td>{{$invmarca->descripcion}}</td>
-                                  <td>
-                                      <div class="text-center">
-                                          @php
-                                          $imagen = is_object($invmarca->archivos)?$invmarca->archivos->url_path:"";
-                                          @endphp
-                                      <img class="rounded  img-thumbnail img-table-custom" src="{{$imagen}}" alt="">
-                                      </div>
-                                  </td>
-                                  <td class="text-center">{!!estado($invmarca->status)!!}</td>
+                                  <td>{{$invColor->nombre}}</td>
+                                  <td>{{$invColor->descripcion}}</td>
+                                  <td class="text-center">{!!estado($invColor->status)!!}</td>
 
                                   <td width="100px" class="text-center">
                                       <div class="accion">
-                                              @can('invmarcas.show')
-                                              <a href="{{route('inventario.marcas.show',$invmarca)}}"
+                                              @can('invcolores.show')
+                                              <a href="{{route('inventario.colores.show',$invColor)}}"
                                                  title="Ver" class="btn btn-sm  btn-accion">
                                                   <i class="fa fa-eye"></i>
                                               </a>
                                               @endcan
-                                              @can('invmarcas.edit')
-                                              <a href="{{route('inventario.marcas.edit',$invmarca->id)}}"
+                                              @can('invcolores.edit')
+                                              <a href="{{route('inventario.colores.edit',$invColor->id)}}"
                                                  title="Modificar" class="btn btn-sm  btn-accion">
                                                   <i class="fa fa-edit"></i>
                                               </a>
                                               @endcan
-                                              @can('invmarcas.destroy')
-                                              <a href="#" onclick="borrar({{$invmarca->id}})" title="Eliminar" class="btn btn-sm btn-borrar btn-accion">
+                                              @can('invcolores.destroy')
+                                              <a href="#" onclick="borrar({{$invColor->id}})" title="Eliminar" class="btn btn-sm btn-borrar btn-accion">
                                                   <i class="fa fa-trash-o"></i>
                                               </a>
                                               @endcan
@@ -77,7 +68,6 @@
                           </tbody>
                       </table>
                             </div>
-                        {{--{{$empresas->render()}}--}}
                     </div>
                 </div>
             </div>
@@ -104,7 +94,7 @@
                 "autoWidth": false,
                 //cambiar orden de columnas segun corresponda para evitar errores
                 "columnDefs": [
-                    { "orderable": false, "targets": [5] }
+                    { "orderable": false, "targets": [4] }
                 ],
                 responsive: {
                     breakpoints: [
@@ -133,7 +123,7 @@
                         var token = $("meta[name='csrf-token']").attr("content");
                         $.ajax(
                                 {
-                                    url: "marcas/"+ide,
+                                    url: "colores/"+ide,
                                     type: 'DELETE',
                                     data: {
                                         "id": ide,

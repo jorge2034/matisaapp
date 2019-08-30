@@ -6,10 +6,9 @@
     {{Form::label('descripcion', 'Descripción')}}
     {{Form::text('descripcion',null,['class'=>'form-control'])}}
 </div>
-{{Form::hidden('company_id',\Auth::user()->company_id)}}
 <div class="form-group">
     {!! Form::label('status', 'Estado', ['class' => 'control-label'] )  !!}
-    <input type="checkbox" id="status" name="status" class="checkboxstatus" {{isset(${{variable}})?${{variable}}->status=="ENABLED"?'checked':false:'checked'}}/>
+    <input type="checkbox" id="status" name="status" class="checkboxstatus" {{isset($invColores)?$invColores->status=="ENABLED"?'checked':false:'checked'}}/>
     <label CLASS="toggle" for="status">Toggle</label>
 </div>
 <div class="form-group">
