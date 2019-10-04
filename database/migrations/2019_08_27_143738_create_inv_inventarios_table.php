@@ -20,10 +20,10 @@ class CreateInvInventariosTable extends Migration
             $table->integer('inv_vehiculo_id')->unsigned()->index();
             $table->integer('cantidad');
             $table->integer('year')->nullable();
-            $table->double('precio_compra_bs', 8, 2)->nullable();
-            $table->double('precio_compra_sus', 8, 2)->nullable();
-            $table->double('precio_venta_bs', 8, 2)->nullable();
-            $table->double('precio_venta_sus', 8, 2)->nullable();
+            $table->double('precio_compra_bs')->nullable();
+            $table->double('precio_compra_sus')->nullable();
+            $table->double('precio_venta_bs')->nullable();
+            $table->double('precio_venta_sus')->nullable();
             $table->string('status')->default('ENABLED');
             $table->softDeletes();
             $table->timestamps();

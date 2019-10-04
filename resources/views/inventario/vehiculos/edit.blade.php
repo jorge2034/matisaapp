@@ -54,5 +54,8 @@
                 }
             });
         });
+
     </script>
+
+    <script src="/adminlte/plugins/lightbox/dist/js/lightbox.js"></script>
 @endsection

@@ -52,15 +52,19 @@
             <div class="carousel-inner text-center">
 
                 <?php
+                    if(isset($imagenes)){
                         foreach($imagenes as $imagen){
                             $active = $cont==0?'active':'';
                             echo '
                              <div class="carousel-item '.$active.'">
+                             <a href="'.$imagen->url_path.'" data-lightbox="roadtrip">
                                  <img class="d-block w-100" src="'.$imagen->url_path.'" alt="First slide">
+                             </a>
                              </div>
                             ';
                             $cont++;
                         }
+                    }
 
                 ?>
             </div>

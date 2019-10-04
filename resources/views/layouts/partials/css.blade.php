@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css">
 <!-- ColorPicker -->
 <link rel="stylesheet" href="/adminlte/plugins/summernote/dist/summernote-bs4.css">
+
+<link rel="stylesheet" href="/adminlte/plugins/lightbox/dist/css/lightbox.css">
 {{--estilo personalizado--}}
 <link rel="stylesheet" href="/css/estilo.css">
 

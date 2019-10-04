@@ -97,7 +97,10 @@ class InvVehiculoController extends Controller
     {
         if(!is_null($request->file('images'))){
             $arrayIds = Archivo::uploadMultipleFile($request->file('images'));
-            $arrayIds = array_merge(json_decode($invVehiculos->imagenes),$arrayIds);
+            $arrayImagesAnterior = json_decode($invVehiculos->imagenes);
+            if(isset($arrayImagesAnterior)){
+                $arrayIds = array_merge($arrayImagesAnterior,$arrayIds);
+            }
             $request->request->set('imagenes',json_encode($arrayIds));
         }
         $status = !is_null($request->input('status'))?InvVehiculo::ENABLED:InvVehiculo::DISABLED;
